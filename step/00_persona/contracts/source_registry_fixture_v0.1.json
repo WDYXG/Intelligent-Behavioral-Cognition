@@ -1,0 +1,77 @@
+{
+  "contract_version": "source_registry_v0.1",
+  "registry_rules": {
+    "cross_source_identity_joining": "prohibited",
+    "raw_data_mutation": "prohibited",
+    "unobserved_attribute_completion": "prohibited",
+    "target_behavior_in_persona": "prohibited"
+  },
+  "sources": [
+    {
+      "source_dataset": "WVS7_CHN_2018",
+      "raw_directory": "raw/SRC_WVS7_CHN_2018",
+      "record_unit": "2018 中国 WVS 受访者级调查记录",
+      "allowed_roles": ["个体级调查快照", "中国成年居民群体分布锚点", "来源内关联分析"],
+      "prohibited_roles": ["2026 行为轨迹", "未来选择标签", "跨来源身份匹配"],
+      "source_internal_links": "仅保留 WVS 文件内可确认的同一受访者字段关系。",
+      "field_audit_status": "partially_confirmed",
+      "persona_projection_gate": "confirmed_fields_only",
+      "next_gate": "把已人工确认的中文问卷和代码本映射写成可重复执行规则。"
+    },
+    {
+      "source_dataset": "PRISM_ALIGNMENT_2024",
+      "raw_directory": "raw/SRC_PRISM_ALIGNMENT_2024",
+      "record_unit": "参与者调查、自我描述和来源内 LLM 交互记录",
+      "allowed_roles": ["自我报告快照", "来源内交互与留出行为验证设计", "文本处理流程测试"],
+      "prohibited_roles": ["中国人口代表性", "跨来源身份匹配", "直接将模型回复当作人的属性"],
+      "source_internal_links": "仅保留官方 user_id 在 survey、conversation 和 metadata 中的来源内关系。",
+      "field_audit_status": "pending",
+      "persona_projection_gate": "field_review_required",
+      "next_gate": "先确定人类内容筛选、PII 处理和非严格 JSON 缺失值标准化规则。"
+    },
+    {
+      "source_dataset": "AMAZON_REVIEWS_2023",
+      "raw_directory": "raw/SRC_AMAZON_REVIEWS_2023",
+      "record_unit": "匿名用户的来源内评论、评分和商品交互记录",
+      "allowed_roles": ["来源内行为快照", "消费偏好和评价方式的有限描述", "行为历史汇总规则测试"],
+      "prohibited_roles": ["一般人格推断", "中国人口校准", "跨来源身份匹配"],
+      "source_internal_links": "仅保留匿名 user_id 与官方商品 ID 的来源内关联。",
+      "field_audit_status": "pending",
+      "persona_projection_gate": "field_review_required",
+      "next_gate": "定义最小行为汇总单位，并排除文本中的 PII 与敏感自我披露。"
+    },
+    {
+      "source_dataset": "STACKOVERFLOW_DEV_SURVEY_2025",
+      "raw_directory": "raw/SRC_STACKOVERFLOW_DEV_SURVEY_2025",
+      "record_unit": "2025 开发者调查受访者级记录",
+      "allowed_roles": ["开发者职业与技能调查快照", "开发者群体内部比较", "AI 使用与工作方式字段审计"],
+      "prohibited_roles": ["一般劳动人口代表性", "跨来源身份匹配", "空值自动解释为否定"],
+      "source_internal_links": "仅保留同一匿名问卷行中官方字段的关系。",
+      "field_audit_status": "partially_confirmed",
+      "persona_projection_gate": "field_review_required",
+      "next_gate": "完成字段级语义、跳题逻辑和缺失编码审计后，再确认投影字段。"
+    },
+    {
+      "source_dataset": "JETBRAINS_DEV_ECOSYSTEM_2025",
+      "raw_directory": "raw/SRC_JETBRAINS_DEV_ECOSYSTEM_2025",
+      "record_unit": "2025 开发者生态调查受访者级记录",
+      "allowed_roles": ["独立开发者样本", "开发者调查结论的重复检验", "权重和复杂跳题处理流程测试"],
+      "prohibited_roles": ["与 Stack Overflow 个体拼接", "一般人口代表性", "将 2025 技术使用视为永久人格"],
+      "source_internal_links": "仅保留同一原始资料包中官方定义的关联。",
+      "field_audit_status": "pending",
+      "persona_projection_gate": "field_review_required",
+      "next_gate": "先解压到独立处理区，审计问卷字段、权重和跳题逻辑。"
+    },
+    {
+      "source_dataset": "WIKIDATA_CHN_PERSONS_2026",
+      "raw_directory": "raw/SRC_WIKIDATA_CHN_PERSONS_2026",
+      "record_unit": "公开 Wikidata 实体及其公开声明",
+      "allowed_roles": ["公开履历字段映射测试", "结构化来源和时间限定信息的处理测试"],
+      "prohibited_roles": ["普通人口代表性", "私密态度推断", "跨来源身份匹配"],
+      "source_internal_links": "仅保留 QID、statement、qualifier 和 reference 的来源内关系。",
+      "field_audit_status": "pending",
+      "persona_projection_gate": "mapping_test_only",
+      "next_gate": "审计 P106、P69、P108 等公开声明的时间、rank 和 reference 后，再做映射测试。"
+    }
+  ]
+}

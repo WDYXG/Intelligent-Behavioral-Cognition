@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "persona/persona_initial_state_v0.1",
+  "title": "Source-Grounded Persona Initial State",
+  "description": "A source-internal Persona representation. It stores only confirmed or explicitly marked draft projections and never contains cross-source joins or target behavior outcomes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "persona_id",
+    "source_identity",
+    "as_of",
+    "projection_status",
+    "stable_attributes",
+    "slow_attributes",
+    "fast_state",
+    "long_term_normative_state",
+    "unavailable_attributes",
+    "restrictions"
+  ],
+  "properties": {
+    "contract_version": { "const": "persona_initial_state_v0.1" },
+    "persona_id": { "type": "string", "pattern": "^[A-Za-z0-9._:-]+$" },
+    "source_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_dataset", "source_version", "source_record_id", "cross_source_joined"],
+      "properties": {
+        "source_dataset": { "type": "string" },
+        "source_version": { "type": "string" },
+        "source_record_id": { "type": "string" },
+        "source_snapshot_id": { "type": ["string", "null"] },
+        "cross_source_joined": { "const": false }
+      }
+    },
+    "as_of": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["date_or_period", "time_precision"],
+      "properties": {
+        "date_or_period": { "type": ["string", "null"] },
+        "time_precision": { "enum": ["instant", "day", "month", "year", "range", "unknown"] }
+      }
+    },
+    "projection_status": { "enum": ["draft_for_review", "confirmed", "partial_confirmed"] },
+    "stable_attributes": { "$ref": "#/$defs/attributeCollection" },
+    "slow_attributes": { "$ref": "#/$defs/attributeCollection" },
+    "fast_state": { "$ref": "#/$defs/attributeCollection" },
+    "long_term_normative_state": { "$ref": "#/$defs/attributeCollection" },
+    "unavailable_attributes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["persona_path", "reason"],
+        "properties": {
+          "persona_path": { "type": "string" },
+          "reason": { "enum": ["not_collected", "not_applicable", "not_confirmed", "privacy_restricted", "excluded_to_prevent_leakage"] }
+        }
+      }
+    },
+    "restrictions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prohibited_uses", "contains_target_behavior"],
+      "properties": {
+        "prohibited_uses": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "contains_target_behavior": { "const": false },
+        "source_scope_note": { "type": ["string", "null"] }
+      }
+    },
+    "extensions": { "type": "object" }
+  },
+  "$defs": {
+    "attributeCollection": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/attributeValue" }
+    },
+    "attributeValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "evidence_ids", "observation_status", "update_policy"],
+      "properties": {
+        "value": { "type": ["string", "number", "boolean", "object", "array", "null"] },
+        "evidence_ids": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "observation_status": { "enum": ["direct", "self_report", "behavioral", "public_record", "deterministic_derivation", "text_extraction", "aggregate_not_individual"] },
+        "update_policy": { "enum": ["immutable_snapshot", "stable", "slow_update_with_evidence", "fast_update_in_world", "long_term_consolidation", "immutable_with_correction", "event_driven_slow", "evidence_accumulation_slow", "monotonic_event_driven_slow", "event_driven_fast", "conditional_event_driven"] },
+        "notes": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

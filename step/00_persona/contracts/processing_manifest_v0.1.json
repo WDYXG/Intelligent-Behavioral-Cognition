@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "persona/processing_manifest_v0.1",
+  "title": "Persona Source Processing Manifest",
+  "description": "Required manifest for a reproducible source-adapter run. It records inputs, rule versions, outputs and counts without containing raw person-level data.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "run_id", "source_dataset", "source_version", "input_artifacts", "rule_bundle", "output_artifacts", "record_counts", "boundary_attestations"],
+  "properties": {
+    "contract_version": { "const": "processing_manifest_v0.1" },
+    "run_id": { "type": "string", "pattern": "^[A-Za-z0-9._:-]+$" },
+    "source_dataset": { "type": "string" },
+    "source_version": { "type": "string" },
+    "input_artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["relative_path", "sha256", "role"],
+        "properties": {
+          "relative_path": { "type": "string" },
+          "sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+          "role": { "enum": ["raw_data", "codebook", "questionnaire", "methodology", "license", "other"] }
+        }
+      }
+    },
+    "rule_bundle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["adapter_version", "field_audit_version", "mapping_rule_versions", "persona_projection_rule_versions"],
+      "properties": {
+        "adapter_version": { "type": "string" },
+        "field_audit_version": { "type": "string" },
+        "mapping_rule_versions": { "type": "array", "items": { "type": "string" } },
+        "persona_projection_rule_versions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "output_artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["relative_path", "sha256", "kind"],
+        "properties": {
+          "relative_path": { "type": "string" },
+          "sha256": { "type": "string", "pattern": "^[A-Fa-f0-9]{64}$" },
+          "kind": { "enum": ["snapshot", "evidence_records", "persona_initial_states", "quality_report", "error_log"] }
+        }
+      }
+    },
+    "record_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["input_records", "snapshot_records", "evidence_records", "persona_records", "excluded_records", "failed_records"],
+      "properties": {
+        "input_records": { "type": "integer", "minimum": 0 },
+        "snapshot_records": { "type": "integer", "minimum": 0 },
+        "evidence_records": { "type": "integer", "minimum": 0 },
+        "persona_records": { "type": "integer", "minimum": 0 },
+        "excluded_records": { "type": "integer", "minimum": 0 },
+        "failed_records": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "boundary_attestations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["raw_bytes_preserved", "cross_source_identity_joined", "unobserved_attributes_imputed", "target_behavior_in_persona"],
+      "properties": {
+        "raw_bytes_preserved": { "const": true },
+        "cross_source_identity_joined": { "const": false },
+        "unobserved_attributes_imputed": { "const": false },
+        "target_behavior_in_persona": { "const": false }
+      }
+    }
+  }
+}

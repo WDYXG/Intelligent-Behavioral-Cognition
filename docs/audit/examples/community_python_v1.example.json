@@ -1,0 +1,256 @@
+{
+  "schema_version": "social_framework_v1",
+  "experiment_id": "community_scene_cognition_v1",
+  "scene": {
+    "adapter": "scene_community:LivingCommunityScene",
+    "name": "daily_life_community",
+    "open_actions": {
+      "enabled": true,
+      "interpreter": "bounded_social_v1",
+      "text_chars": 400,
+      "time_cost": 1
+    }
+  },
+  "cognition": {
+    "protocol": "judgments_intentions_v1",
+    "max_tasks": 32,
+    "max_active_tasks": 6,
+    "max_updates_per_decision": 2,
+    "max_judgments": 3,
+    "text_chars": 240,
+    "related_memories": 2,
+    "memory_event_limit": 4
+  },
+  "kernel": "community_daily_life_v1",
+  "backend": "llm",
+  "notes": "Public configuration example only. Restore authorized local artifacts and verify their hashes before any use; no permission to call an API is granted.",
+  "population": {
+    "dataset": "WVS7_CHN_2018",
+    "expected_count": 12,
+    "initialization_manifest": "LOCAL_ONLY/initialization_manifest.json",
+    "initialization_manifest_sha256": "REPLACE_WITH_VERIFIED_LOCAL_MANIFEST_SHA256",
+    "expected_record_ids": [
+      "LOCAL_RECORD_ID_01",
+      "LOCAL_RECORD_ID_02",
+      "LOCAL_RECORD_ID_03",
+      "LOCAL_RECORD_ID_04",
+      "LOCAL_RECORD_ID_05",
+      "LOCAL_RECORD_ID_06",
+      "LOCAL_RECORD_ID_07",
+      "LOCAL_RECORD_ID_08",
+      "LOCAL_RECORD_ID_09",
+      "LOCAL_RECORD_ID_10",
+      "LOCAL_RECORD_ID_11",
+      "LOCAL_RECORD_ID_12"
+    ]
+  },
+  "reuse_authorization": {
+    "policy": "existing_decision_view_no_expansion",
+    "source_experiment_id": "coordination_vertical_slice_v1",
+    "decision_fields": [
+      "Q1",
+      "Q2",
+      "Q3",
+      "Q4",
+      "Q5",
+      "Q6",
+      "Q57",
+      "Q77",
+      "Q91",
+      "Q262",
+      "Q272",
+      "Q275"
+    ]
+  },
+  "time_alignment": {
+    "mode": "counterfactual_community_from_2018_snapshot",
+    "source_time_policy": "Keep all survey observation/reference dates; no extrapolation of P to 2026.",
+    "simulation_time": "abstract community rounds; round count in this config, not old coordination timing"
+  },
+  "learning_enabled": false,
+  "mechanisms": {
+    "x_update": "observation_cognition_intents_v1",
+    "consolidator": "disabled",
+    "norm_inference": "disabled"
+  },
+  "rounds": 8,
+  "repetitions": 1,
+  "seed": 17,
+  "daily_life": {
+    "origin": "experiment_assumptions_not_persona_evidence",
+    "communication_passes": 1,
+    "max_action_steps": 2,
+    "time_per_round": 4,
+    "initial_inventory": {
+      "food": 2,
+      "water": 2
+    },
+    "need_per_round": {
+      "food": 2,
+      "water": 2
+    },
+    "initial_health": 10,
+    "max_health": 10,
+    "max_deficit": 10,
+    "damage_threshold": 3,
+    "damage_per_round": 2,
+    "recovery_per_round": 1,
+    "impaired_health_below": 5,
+    "impaired_time_penalty": 2,
+    "rest_health_per_unit": 2,
+    "base_wage": 3,
+    "workspace_bonus": 2,
+    "maintenance_cost_per_unit": 1,
+    "repair_per_unit": 1,
+    "offer_ttl_rounds": 2,
+    "max_open_offers_per_resident": 2,
+    "max_open_help_per_resident": 1,
+    "help_ttl_rounds": 2,
+    "market": {
+      "initial_stock": {
+        "food": 24,
+        "water": 24
+      },
+      "restock_per_round": {
+        "food": 12,
+        "water": 12
+      },
+      "stock_cap": {
+        "food": 48,
+        "water": 48
+      },
+      "prices": {
+        "food": 2,
+        "water": 1
+      }
+    },
+    "facilities": {
+      "shared_pantry": {
+        "condition": 3,
+        "max_condition": 4,
+        "wear_every_rounds": 2,
+        "wear_units": 1,
+        "daily_capacity": 18,
+        "stock_cap": 48,
+        "initial_stock": 12
+      },
+      "water_maintenance": {
+        "condition": 3,
+        "max_condition": 4,
+        "wear_every_rounds": 2,
+        "wear_units": 1,
+        "daily_capacity": 24,
+        "stock_cap": 48,
+        "initial_stock": 12
+      },
+      "community_workspace": {
+        "condition": 2,
+        "max_condition": 4,
+        "wear_every_rounds": 3,
+        "wear_units": 1,
+        "daily_capacity": 12,
+        "stock_cap": 0,
+        "initial_stock": 0
+      }
+    },
+    "events": [
+      {
+        "round": 3,
+        "kind": "facility_damage",
+        "target": "water_maintenance",
+        "amount": 2
+      },
+      {
+        "round": 4,
+        "kind": "market_loss",
+        "target": "food",
+        "amount": 18
+      },
+      {
+        "round": 6,
+        "kind": "facility_damage",
+        "target": "community_workspace",
+        "amount": 2
+      }
+    ]
+  },
+  "observation": {
+    "scope": "public_community_plus_own_private",
+    "memory_window": 1,
+    "public_history_window": 8
+  },
+  "world": {
+    "initial_personal_credits": 20,
+    "initial_pool": 36,
+    "initial_common_need": 12,
+    "need_growth_per_round": 1,
+    "labor_per_round": 2,
+    "withdrawal_expectation": 2,
+    "max_projects": 12,
+    "max_open_per_proposer": 1,
+    "message_chars": 160,
+    "private_history_window": 6,
+    "quorum": 7,
+    "approval_fraction": 0.5,
+    "public_expectations": [
+      "Members may discuss shared needs, propose projects, vote and collaborate; no outcome or consensus is required.",
+      "Voluntary contributions are welcome. Taking more than the published withdrawal_expectation in one action exceeds the public expectation but remains executable if funds suffice.",
+      "Residents cannot directly rewrite resource balances or World rules. Public statements are participants' messages, not verified truths or shared beliefs."
+    ],
+    "project_templates": [
+      {
+        "id": "shared_pantry",
+        "title": "共同食物储备",
+        "cost": 8,
+        "labor_required": 4,
+        "need_reduction": 5,
+        "credit_reward_each": 0,
+        "service_units_each": 1
+      },
+      {
+        "id": "water_maintenance",
+        "title": "公共用水维护",
+        "cost": 12,
+        "labor_required": 6,
+        "need_reduction": 8,
+        "credit_reward_each": 0,
+        "service_units_each": 2
+      },
+      {
+        "id": "community_workspace",
+        "title": "共用工作空间",
+        "cost": 16,
+        "labor_required": 8,
+        "need_reduction": 4,
+        "credit_reward_each": 1,
+        "service_units_each": 1
+      }
+    ]
+  },
+  "api": {
+    "endpoint_env": "VS_LLM_ENDPOINT",
+    "model_env": "VS_LLM_MODEL",
+    "key_env": "VS_LLM_API_KEY",
+    "allow_remote_persona": false,
+    "concurrency": 2,
+    "timeout_seconds": 60,
+    "max_retries": 1,
+    "backoff_seconds": 2,
+    "max_input_tokens": 32768,
+    "max_output_tokens": 4096,
+    "max_response_bytes": 2097152,
+    "temperature": 0,
+    "thinking": {
+      "type": "disabled"
+    },
+    "send_seed": false,
+    "response_format": "json_object",
+    "input_usd_per_million": null,
+    "output_usd_per_million": null
+  },
+  "budget": {
+    "max_calls": 384,
+    "max_tokens": 14000000,
+    "max_usd": null
+  }
+}

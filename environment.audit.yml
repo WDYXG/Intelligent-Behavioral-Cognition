@@ -1,0 +1,7 @@
+# Minimal Python core environment; the existing local environment is reused.
+# No model, data or tokenizer downloads are required for Phase I-A.
+name: community-agent
+channels:
+  - defaults
+dependencies:
+  - python=3.11.16

@@ -1,0 +1,7 @@
+{
+  "name": "persona-source-pipeline",
+  "private": true,
+  "type": "module",
+  "scripts": {"review:wvs": "bun run src/run-wvs.ts", "test": "bun test"},
+  "dependencies": {"ajv": "8.17.1", "csv-parse": "6.1.0", "jszip": "3.10.1"}
+}

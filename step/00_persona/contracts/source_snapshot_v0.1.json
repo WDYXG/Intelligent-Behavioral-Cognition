@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "persona/source_snapshot_v0.1",
+  "title": "Source-Internal Standardized Snapshot",
+  "description": "An immutable, source-internal standardized view of one record at a stated time. It preserves raw and normalized values without making a Persona or joining sources.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "snapshot_id", "source_identity", "source_artifact", "as_of", "fields", "restrictions"],
+  "properties": {
+    "contract_version": { "const": "source_snapshot_v0.1" },
+    "snapshot_id": { "type": "string", "pattern": "^[A-Za-z0-9._:-]+$" },
+    "source_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_dataset", "source_version", "source_record_id", "cross_source_joined"],
+      "properties": {
+        "source_dataset": { "type": "string" },
+        "source_version": { "type": "string" },
+        "source_record_id": { "type": "string" },
+        "cross_source_joined": { "const": false }
+      }
+    },
+    "source_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact", "source_hash"],
+      "properties": {
+        "artifact": { "type": "string" },
+        "source_hash": { "type": ["string", "null"] }
+      }
+    },
+    "as_of": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["date_or_period", "time_precision"],
+      "properties": {
+        "date_or_period": { "type": ["string", "null"] },
+        "time_precision": { "enum": ["instant", "day", "month", "year", "range", "unknown"] }
+      }
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/fieldSnapshot" }
+    },
+    "restrictions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_internal_only", "contains_target_behavior", "raw_visibility"],
+      "properties": {
+        "source_internal_only": { "const": true },
+        "contains_target_behavior": { "const": false },
+        "raw_visibility": { "enum": ["restricted", "public", "unknown"] },
+        "not_for_cross_source_matching": { "const": true }
+      }
+    },
+    "extensions": { "type": "object" }
+  },
+  "$defs": {
+    "fieldSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_field", "raw_value", "raw_missing_code", "normalized_value", "normalization_status", "mapping_rule_id", "mapping_rule_version", "observation"],
+      "properties": {
+        "source_field": { "type": "string" },
+        "raw_value": { "type": ["string", "number", "boolean", "object", "array", "null"] },
+        "raw_missing_code": { "type": ["string", "number", "null"] },
+        "normalized_value": { "type": ["string", "number", "boolean", "object", "array", "null"] },
+        "normalization_status": { "enum": ["unchanged", "normalized", "deterministically_derived", "unresolved", "excluded"] },
+        "mapping_rule_id": { "type": ["string", "null"] },
+        "mapping_rule_version": { "type": ["string", "null"] },
+        "observation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["assertion_kind", "observation_time", "time_precision", "reference_period"],
+          "properties": {
+            "assertion_kind": { "enum": ["direct_observation", "self_report", "behavioral_trace", "public_record", "deterministic_derivation", "text_extraction", "aggregate_statistic"] },
+            "observation_time": { "type": ["string", "null"] },
+            "time_precision": { "enum": ["instant", "day", "month", "year", "range", "unknown"] },
+            "reference_period": { "type": ["string", "null"] }
+          }
+        },
+        "quality_flags": { "type": "array", "items": { "type": "string" } },
+        "notes": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

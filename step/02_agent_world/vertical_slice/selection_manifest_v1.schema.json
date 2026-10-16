@@ -1,0 +1,1130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:social-agent:selection-manifest:1.0.0-draft",
+  "title": "Vertical Slice selection manifest v1",
+  "description": "Schema design only. An actual completed selection has 12 distinct real respondents and needs additional semantic validation. No actual respondents are selected by this schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "selection_id",
+    "status",
+    "purpose",
+    "created_at",
+    "requested_n",
+    "source",
+    "protocol",
+    "boundary",
+    "coverage",
+    "samples",
+    "integrity"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "selection_manifest_v1"
+    },
+    "selection_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "selected_pending_confirmation",
+        "confirmed"
+      ]
+    },
+    "purpose": {
+      "const": "architecture_test_coverage_only"
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requested_n": {
+      "const": 12
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataset",
+        "version",
+        "source_run",
+        "candidate_count",
+        "inputs"
+      ],
+      "properties": {
+        "dataset": {
+          "const": "WVS7_CHN_2018"
+        },
+        "version": {
+          "const": "6-0-0 (2024-04-30)"
+        },
+        "source_run": {
+          "const": "WVS_full_2026-09-17T09-33-15-228Z"
+        },
+        "candidate_count": {
+          "type": "integer",
+          "minimum": 12,
+          "maximum": 3036
+        },
+        "inputs": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "standardized_records",
+            "consistency_flags",
+            "evidence",
+            "run_manifest",
+            "source_audit",
+            "routing_catalog",
+            "architecture_spec",
+            "routing_spec"
+          ],
+          "properties": {
+            "standardized_records": {
+              "$ref": "#/$defs/artifact"
+            },
+            "consistency_flags": {
+              "$ref": "#/$defs/artifact"
+            },
+            "evidence": {
+              "$ref": "#/$defs/artifact"
+            },
+            "run_manifest": {
+              "$ref": "#/$defs/artifact"
+            },
+            "source_audit": {
+              "$ref": "#/$defs/artifact"
+            },
+            "routing_catalog": {
+              "$ref": "#/$defs/artifact"
+            },
+            "architecture_spec": {
+              "$ref": "#/$defs/artifact"
+            },
+            "routing_spec": {
+              "$ref": "#/$defs/artifact"
+            }
+          }
+        }
+      }
+    },
+    "protocol": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "selection_plan",
+        "plan_version",
+        "selector_version",
+        "selector_code_sha256",
+        "quantile_method",
+        "thresholds",
+        "auxiliary_tag_vocabulary",
+        "algorithm",
+        "optimization"
+      ],
+      "properties": {
+        "selection_plan": {
+          "$ref": "#/$defs/artifact"
+        },
+        "plan_version": {
+          "const": "1.0.0-draft"
+        },
+        "selector_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selector_code_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "quantile_method": {
+          "const": "nearest_rank_ceil_pN"
+        },
+        "thresholds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "selection_frame",
+            "P_candidate",
+            "M0_candidate",
+            "X0_candidate"
+          ],
+          "properties": {
+            "selection_frame": {
+              "$ref": "#/$defs/threshold"
+            },
+            "P_candidate": {
+              "$ref": "#/$defs/threshold"
+            },
+            "M0_candidate": {
+              "$ref": "#/$defs/threshold"
+            },
+            "X0_candidate": {
+              "$ref": "#/$defs/threshold"
+            }
+          }
+        },
+        "auxiliary_tag_vocabulary": {
+          "type": "array",
+          "minItems": 9,
+          "maxItems": 9,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "valid_zero_children",
+              "valid_unsure_category",
+              "missing_no_answer",
+              "missing_dont_know",
+              "missing_not_applicable",
+              "age_year_discrepancy",
+              "P_rich",
+              "M_rich",
+              "X_rich"
+            ]
+          }
+        },
+        "algorithm": {
+          "const": "deterministic_global_slot_matching_lexicographic_v1"
+        },
+        "optimization": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "solver_name",
+            "solver_version",
+            "status",
+            "objective_values",
+            "tie_break",
+            "random_selection"
+          ],
+          "properties": {
+            "solver_name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "solver_version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "status": {
+              "const": "optimal_all_stages"
+            },
+            "objective_values": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "objective_id",
+                  "value"
+                ],
+                "properties": {
+                  "objective_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "value": {
+                    "type": [
+                      "number",
+                      "string",
+                      "array"
+                    ]
+                  }
+                }
+              }
+            },
+            "tie_break": {
+              "const": "S01_to_S12_source_id_vector_utf8_lexicographic_ascending"
+            },
+            "random_selection": {
+              "const": false
+            }
+          }
+        }
+      }
+    },
+    "boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "architecture_test_only",
+        "population_representative",
+        "routing_activation_granted",
+        "future_holdout_independence_claimed",
+        "validation_target_payload_used_for_selection",
+        "learning_enabled",
+        "P_frozen_at_runtime",
+        "M_frozen_at_runtime",
+        "experiment_role_plan_id",
+        "access_scope"
+      ],
+      "properties": {
+        "architecture_test_only": {
+          "const": true
+        },
+        "population_representative": {
+          "const": false
+        },
+        "routing_activation_granted": {
+          "const": false
+        },
+        "future_holdout_independence_claimed": {
+          "const": false
+        },
+        "validation_target_payload_used_for_selection": {
+          "const": false
+        },
+        "learning_enabled": {
+          "const": false
+        },
+        "P_frozen_at_runtime": {
+          "const": true
+        },
+        "M_frozen_at_runtime": {
+          "const": true
+        },
+        "experiment_role_plan_id": {
+          "const": null
+        },
+        "access_scope": {
+          "const": "restricted_selection_audit_not_decision_context"
+        }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slots",
+        "auxiliary_tags",
+        "global_guards",
+        "gaps",
+        "runtime_input_coverage_status"
+      ],
+      "properties": {
+        "slots": {
+          "type": "array",
+          "minItems": 12,
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "slot_id",
+              "candidate_count",
+              "selected_source_record_id"
+            ],
+            "properties": {
+              "slot_id": {
+                "enum": [
+                  "S01",
+                  "S02",
+                  "S03",
+                  "S04",
+                  "S05",
+                  "S06",
+                  "S07",
+                  "S08",
+                  "S09",
+                  "S10",
+                  "S11",
+                  "S12"
+                ]
+              },
+              "candidate_count": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "selected_source_record_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "auxiliary_tags": {
+          "type": "array",
+          "minItems": 9,
+          "maxItems": 9,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "tag",
+              "covered",
+              "source_record_ids",
+              "uncovered_reason"
+            ],
+            "properties": {
+              "tag": {
+                "enum": [
+                  "valid_zero_children",
+                  "valid_unsure_category",
+                  "missing_no_answer",
+                  "missing_dont_know",
+                  "missing_not_applicable",
+                  "age_year_discrepancy",
+                  "P_rich",
+                  "M_rich",
+                  "X_rich"
+                ]
+              },
+              "covered": {
+                "type": "boolean"
+              },
+              "source_record_ids": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "uncovered_reason": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "global_guards": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_unmeasured_remain_unknown",
+            "projection_holds_preserved",
+            "Q290_specific_ethnicity_blocked",
+            "Q263_not_used"
+          ],
+          "properties": {
+            "source_unmeasured_remain_unknown": {
+              "const": true
+            },
+            "projection_holds_preserved": {
+              "const": true
+            },
+            "Q290_specific_ethnicity_blocked": {
+              "const": true
+            },
+            "Q263_not_used": {
+              "const": true
+            }
+          }
+        },
+        "gaps": {
+          "type": "array",
+          "minItems": 0,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "runtime_input_coverage_status": {
+          "const": "pending_experiment_role_plan"
+        }
+      }
+    },
+    "samples": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "$ref": "#/$defs/sample"
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_ids_unique",
+        "slots_unique_and_complete",
+        "cross_source_joined",
+        "automatic_correction",
+        "imputation",
+        "source_hashes_verified",
+        "selected_evidence_verified",
+        "repeated_selection_same_members_and_slots",
+        "semantic_validation_report"
+      ],
+      "properties": {
+        "source_ids_unique": {
+          "const": true
+        },
+        "slots_unique_and_complete": {
+          "const": true
+        },
+        "cross_source_joined": {
+          "const": false
+        },
+        "automatic_correction": {
+          "const": false
+        },
+        "imputation": {
+          "const": false
+        },
+        "source_hashes_verified": {
+          "const": true
+        },
+        "selected_evidence_verified": {
+          "const": true
+        },
+        "repeated_selection_same_members_and_slots": {
+          "const": true
+        },
+        "semantic_validation_report": {
+          "$ref": "#/$defs/artifact"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "metric_select": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "denominator",
+        "valid_count",
+        "missing_count",
+        "missing_by_reason"
+      ],
+      "properties": {
+        "denominator": {
+          "const": 215
+        },
+        "valid_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 215
+        },
+        "missing_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 215
+        },
+        "missing_by_reason": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "metric_P": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "denominator",
+        "valid_count",
+        "missing_count",
+        "missing_by_reason"
+      ],
+      "properties": {
+        "denominator": {
+          "const": 13
+        },
+        "valid_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 13
+        },
+        "missing_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 13
+        },
+        "missing_by_reason": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "metric_M": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "denominator",
+        "valid_count",
+        "missing_count",
+        "missing_by_reason"
+      ],
+      "properties": {
+        "denominator": {
+          "const": 137
+        },
+        "valid_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 137
+        },
+        "missing_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 137
+        },
+        "missing_by_reason": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "metric_X": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "denominator",
+        "valid_count",
+        "missing_count",
+        "missing_by_reason"
+      ],
+      "properties": {
+        "denominator": {
+          "const": 11
+        },
+        "valid_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 11
+        },
+        "missing_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 11
+        },
+        "missing_by_reason": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "threshold": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "denominator",
+        "q20",
+        "q80"
+      ],
+      "properties": {
+        "denominator": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "q20": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "q80": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "evidence_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "source_field",
+        "snapshot_locator",
+        "observation_time",
+        "time_precision",
+        "reference_period",
+        "time_limitations",
+        "raw_value",
+        "normalized_value",
+        "source_status",
+        "missing_reason"
+      ],
+      "properties": {
+        "evidence_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_field": {
+          "enum": [
+            "Q1",
+            "Q2",
+            "Q3",
+            "Q4",
+            "Q5",
+            "Q6",
+            "Q7",
+            "Q8",
+            "Q9",
+            "Q10",
+            "Q11",
+            "Q12",
+            "Q13",
+            "Q14",
+            "Q15",
+            "Q16",
+            "Q17",
+            "Q18",
+            "Q19",
+            "Q20",
+            "Q21",
+            "Q22",
+            "Q23",
+            "Q24",
+            "Q25",
+            "Q26",
+            "Q27",
+            "Q28",
+            "Q29",
+            "Q30",
+            "Q31",
+            "Q32",
+            "Q33",
+            "Q34",
+            "Q35",
+            "Q36",
+            "Q37",
+            "Q38",
+            "Q39",
+            "Q40",
+            "Q41",
+            "Q42",
+            "Q43",
+            "Q44",
+            "Q45",
+            "Q46",
+            "Q47",
+            "Q48",
+            "Q49",
+            "Q50",
+            "Q56",
+            "Q57",
+            "Q58",
+            "Q59",
+            "Q60",
+            "Q61",
+            "Q62",
+            "Q63",
+            "Q64",
+            "Q65",
+            "Q66",
+            "Q67",
+            "Q68",
+            "Q69",
+            "Q70",
+            "Q71",
+            "Q72",
+            "Q73",
+            "Q74",
+            "Q75",
+            "Q76",
+            "Q77",
+            "Q78",
+            "Q79",
+            "Q80",
+            "Q81",
+            "Q91",
+            "Q92",
+            "Q94",
+            "Q95",
+            "Q96",
+            "Q97",
+            "Q98",
+            "Q99",
+            "Q100",
+            "Q101",
+            "Q102",
+            "Q103",
+            "Q104",
+            "Q105",
+            "Q106",
+            "Q107",
+            "Q108",
+            "Q109",
+            "Q110",
+            "Q111",
+            "Q112",
+            "Q113",
+            "Q114",
+            "Q115",
+            "Q116",
+            "Q117",
+            "Q118",
+            "Q119",
+            "Q120",
+            "Q121",
+            "Q122",
+            "Q123",
+            "Q124",
+            "Q126",
+            "Q127",
+            "Q128",
+            "Q129",
+            "Q131",
+            "Q142",
+            "Q143",
+            "Q146",
+            "Q147",
+            "Q149",
+            "Q150",
+            "Q151",
+            "Q152",
+            "Q153",
+            "Q154",
+            "Q155",
+            "Q156",
+            "Q157",
+            "Q158",
+            "Q159",
+            "Q160",
+            "Q161",
+            "Q162",
+            "Q163",
+            "Q164",
+            "Q165",
+            "Q166",
+            "Q167",
+            "Q168",
+            "Q169",
+            "Q170",
+            "Q173",
+            "Q174",
+            "Q175",
+            "Q176",
+            "Q177",
+            "Q178",
+            "Q179",
+            "Q180",
+            "Q181",
+            "Q182",
+            "Q183",
+            "Q184",
+            "Q185",
+            "Q186",
+            "Q187",
+            "Q188",
+            "Q189",
+            "Q190",
+            "Q191",
+            "Q192",
+            "Q193",
+            "Q194",
+            "Q195",
+            "Q196",
+            "Q197",
+            "Q198",
+            "Q199",
+            "Q235",
+            "Q236",
+            "Q237",
+            "Q238",
+            "Q239",
+            "Q241",
+            "Q242",
+            "Q243",
+            "Q244",
+            "Q245",
+            "Q246",
+            "Q247",
+            "Q248",
+            "Q249",
+            "Q250",
+            "Q251",
+            "Q252",
+            "Q253",
+            "Q254",
+            "Q255",
+            "Q256",
+            "Q257",
+            "Q258",
+            "Q259",
+            "Q260",
+            "Q261",
+            "Q262",
+            "Q270",
+            "Q271",
+            "Q272",
+            "Q273",
+            "Q274",
+            "Q275",
+            "Q276",
+            "Q277",
+            "Q278",
+            "Q279",
+            "Q280",
+            "Q281",
+            "Q282",
+            "Q283",
+            "Q284",
+            "Q285",
+            "Q286",
+            "Q287",
+            "Q288",
+            "Q289",
+            "Q290"
+          ]
+        },
+        "snapshot_locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observation_time": {
+          "type": [
+            "string",
+            "integer",
+            "null"
+          ]
+        },
+        "time_precision": {
+          "enum": [
+            "instant",
+            "day",
+            "month",
+            "year",
+            "range",
+            "unknown"
+          ]
+        },
+        "reference_period": {
+          "type": [
+            "string",
+            "integer",
+            "object",
+            "null"
+          ]
+        },
+        "time_limitations": {
+          "type": "array",
+          "minItems": 0,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "raw_value": {
+          "type": [
+            "string",
+            "number",
+            "null"
+          ]
+        },
+        "normalized_value": {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "object",
+            "array",
+            "null"
+          ]
+        },
+        "source_status": {
+          "enum": [
+            "source_category",
+            "source_missing"
+          ]
+        },
+        "missing_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "witness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "criterion_id",
+        "kind",
+        "evidence_refs",
+        "aggregate_profile_ref",
+        "consistency_flag",
+        "verification_note"
+      ],
+      "properties": {
+        "criterion_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "field_condition",
+            "consistency_flag",
+            "aggregate_metric"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 0,
+          "items": {
+            "$ref": "#/$defs/evidence_ref"
+          }
+        },
+        "aggregate_profile_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "consistency_flag": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "verification_note": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "sample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "slot_id",
+        "sample_alias",
+        "source_record_id",
+        "primary_test_purpose",
+        "secondary_tags",
+        "profile",
+        "selection_evidence",
+        "expected_checks",
+        "limitations"
+      ],
+      "properties": {
+        "slot_id": {
+          "enum": [
+            "S01",
+            "S02",
+            "S03",
+            "S04",
+            "S05",
+            "S06",
+            "S07",
+            "S08",
+            "S09",
+            "S10",
+            "S11",
+            "S12"
+          ]
+        },
+        "sample_alias": {
+          "type": "string",
+          "pattern": "^VS(0[1-9]|1[0-2])$"
+        },
+        "source_record_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "primary_test_purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "secondary_tags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "valid_zero_children",
+              "valid_unsure_category",
+              "missing_no_answer",
+              "missing_dont_know",
+              "missing_not_applicable",
+              "age_year_discrepancy",
+              "P_rich",
+              "M_rich",
+              "X_rich"
+            ]
+          }
+        },
+        "profile": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "selection_frame",
+            "P_candidate",
+            "M0_candidate",
+            "X0_candidate",
+            "consistency_flags"
+          ],
+          "properties": {
+            "selection_frame": {
+              "$ref": "#/$defs/metric_select"
+            },
+            "P_candidate": {
+              "$ref": "#/$defs/metric_P"
+            },
+            "M0_candidate": {
+              "$ref": "#/$defs/metric_M"
+            },
+            "X0_candidate": {
+              "$ref": "#/$defs/metric_X"
+            },
+            "consistency_flags": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "selection_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/witness"
+          }
+        },
+        "expected_checks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "persona/evidence_record_v0.1",
+  "title": "Unified Persona Evidence Record",
+  "description": "A source-grounded, auditable statement that may support a Persona field. This schema does not identify or join people across sources.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "evidence_id",
+    "provenance",
+    "observation",
+    "normalization",
+    "projection",
+    "quality",
+    "governance"
+  ],
+  "properties": {
+    "contract_version": { "const": "evidence_record_v0.1" },
+    "evidence_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]+$",
+      "description": "Globally unique evidence identifier."
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_dataset", "source_version", "source_record_id", "source_locator"],
+      "properties": {
+        "source_dataset": { "type": "string" },
+        "source_version": { "type": "string" },
+        "source_record_id": { "type": "string" },
+        "snapshot_id": { "type": ["string", "null"], "description": "Optional source_snapshot_v0.1 identifier when the evidence came from a standardized source snapshot." },
+        "source_locator": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["artifact", "location_type", "location_value"],
+          "properties": {
+            "artifact": { "type": "string", "description": "Relative source file or document name." },
+            "location_type": { "enum": ["field", "row", "text_span", "event", "table_cell", "api_entity"] },
+            "location_value": { "type": "string" },
+            "context_note": { "type": ["string", "null"] }
+          }
+        },
+        "source_hash": { "type": ["string", "null"] }
+      }
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assertion_kind", "observed_value", "time", "sensitivity"],
+      "properties": {
+        "assertion_kind": {
+          "enum": [
+            "direct_observation",
+            "self_report",
+            "behavioral_trace",
+            "public_record",
+            "deterministic_derivation",
+            "text_extraction",
+            "aggregate_statistic"
+          ]
+        },
+        "observed_value": { "type": ["string", "number", "boolean", "object", "array", "null"] },
+        "time": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["observation_time", "time_precision", "reference_period"],
+          "properties": {
+            "observation_time": { "type": ["string", "null"] },
+            "time_precision": { "enum": ["instant", "day", "month", "year", "range", "unknown"] },
+            "reference_period": { "type": ["string", "null"] }
+          }
+        },
+        "sensitivity": { "enum": ["public", "restricted_research", "sensitive", "unknown"] }
+      }
+    },
+    "normalization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "normalized_value", "mapping_rule_id", "mapping_rule_version"],
+      "properties": {
+        "status": { "enum": ["unchanged", "normalized", "deterministically_derived", "unresolved", "excluded"] },
+        "normalized_value": { "type": ["string", "number", "boolean", "object", "array", "null"] },
+        "mapping_rule_id": { "type": ["string", "null"] },
+        "mapping_rule_version": { "type": ["string", "null"] },
+        "raw_missing_code": { "type": ["string", "number", "null"] },
+        "transformation_note": { "type": ["string", "null"] }
+      }
+    },
+    "projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target", "persona_path", "projection_status", "prohibited_inference"],
+      "properties": {
+        "target": {
+          "enum": ["survey_snapshot_only", "persona_initial_state", "population_calibration_only", "excluded"]
+        },
+        "persona_path": { "type": ["string", "null"] },
+        "projection_status": { "enum": ["draft_for_review", "confirmed", "not_applicable", "rejected"] },
+        "prohibited_inference": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["quality_flags", "review_status"],
+      "properties": {
+        "quality_flags": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "none",
+              "self_report",
+              "selection_bias",
+              "time_lag",
+              "top_coding",
+              "ambiguous_semantics",
+              "not_representative",
+              "text_extraction_risk",
+              "non_strict_source_format",
+              "sensitive_content",
+              "other"
+            ]
+          }
+        },
+        "review_status": { "enum": ["unreviewed", "draft", "confirmed", "excluded"] },
+        "review_note": { "type": ["string", "null"] }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["license_scope", "contains_direct_identifiers", "reidentification_risk"],
+      "properties": {
+        "license_scope": { "enum": ["research_only", "public_reuse_allowed", "restricted", "unknown"] },
+        "contains_direct_identifiers": { "type": "boolean" },
+        "reidentification_risk": { "enum": ["low", "medium", "high", "unknown"] },
+        "handling_note": { "type": ["string", "null"] }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Source-specific information that must not override the core fields."
+    }
+  }
+}

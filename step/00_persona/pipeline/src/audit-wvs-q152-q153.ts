@@ -1,0 +1,37 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+import JSZip from 'jszip';
+import {parse} from 'csv-parse';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
+const source='raw/SRC_WVS7_CHN_2018/data/F00011356-WVS_Cross-National_Wave_7_csv_v6_0.zip';
+const hash=(b:Uint8Array)=>createHash('sha256').update(b).digest('hex');
+const bytes=await fs.readFile(path.join(root,source));
+const sha256=hash(bytes);
+assert.equal(sha256,'234ddf03976f50f5d03f9e163bf346626a7bbd9afeae2028622d513617cb223d');
+const zip=await JSZip.loadAsync(bytes,{checkCRC32:true});
+const member='WVS_Cross-National_Wave_7_csv_v6_0.csv';
+const entry=zip.file(member);assert.ok(entry);
+const parser=parse({bom:true,record_delimiter:['\r\n','\n','\r'],columns:true,skip_empty_lines:true});
+const stream=entry.nodeStream();stream.on('error',e=>parser.destroy(e));stream.pipe(parser);
+let scanned=0,n=0;const ids=new Set<string>();const pairs=new Map<string,number>();
+const counts={first_missing_second_minus3:0,first_missing_second_not_minus3:0,first_valid_second_minus3:0,first_valid_second_no_answer:0,both_valid_distinct:0,both_valid_equal:0,other_pair:0};
+const valid=(x:string)=>['1','2','3','4'].includes(x);
+for await(const r of parser){
+ scanned++;
+ if(r.B_COUNTRY!=='156'||r.B_COUNTRY_ALPHA!=='CHN'||r.A_YEAR!=='2018')continue;
+ assert.equal(r.version,'6-0-0 (2024-04-30)');assert.ok(!ids.has(r.S007));ids.add(r.S007);n++;
+ const a=r.Q152,b=r.Q153,key=`${a},${b}`;pairs.set(key,(pairs.get(key)??0)+1);
+ if(['-1','-2'].includes(a))counts[b==='-3'?'first_missing_second_minus3':'first_missing_second_not_minus3']++;
+ else if(valid(a)&&b==='-3')counts.first_valid_second_minus3++;
+ else if(valid(a)&&b==='-2')counts.first_valid_second_no_answer++;
+ else if(valid(a)&&valid(b))counts[a===b?'both_valid_equal':'both_valid_distinct']++;
+ else counts.other_pair++;
+}
+assert.equal(scanned,97220);assert.equal(n,3036);assert.equal(Object.values(counts).reduce((a,b)=>a+b,0),n);
+assert.equal(hash(await fs.readFile(path.join(root,source))),sha256);
+const result={scope:'Q152_Q153_pair_consistency_only',source,member,sha256,scanned,selected:n,filter:{B_COUNTRY:'156',B_COUNTRY_ALPHA:'CHN',A_YEAR:'2018'},counts,pair_frequencies:[...pairs].map(([key,count])=>({Q152:Number(key.split(',')[0]),Q153:Number(key.split(',')[1]),count})).sort((a,b)=>a.Q152-b.Q152||a.Q153-b.Q153),checks:{unique_source_ids:true,counts_reconciled:true,raw_hash_unchanged:true},review_flags_only:true,source_records_modified:false,full_question_audit_complete:false};
+await fs.writeFile(path.join(root,'working/WVS7_full_audit_2026-09-14/Q152_Q153_pair_check.json'),JSON.stringify(result,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({selected:n,counts,checks:result.checks}));

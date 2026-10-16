@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "persona/source_registry_v0.1",
+  "title": "Persona Source Registry",
+  "description": "Registry of approved raw sources and their deliberately limited roles. It is not a cross-source person index.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract_version", "registry_rules", "sources"],
+  "properties": {
+    "contract_version": { "const": "source_registry_v0.1" },
+    "registry_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cross_source_identity_joining", "raw_data_mutation", "unobserved_attribute_completion", "target_behavior_in_persona"],
+      "properties": {
+        "cross_source_identity_joining": { "const": "prohibited" },
+        "raw_data_mutation": { "const": "prohibited" },
+        "unobserved_attribute_completion": { "const": "prohibited" },
+        "target_behavior_in_persona": { "const": "prohibited" }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_dataset", "raw_directory", "record_unit", "allowed_roles", "prohibited_roles", "source_internal_links", "field_audit_status", "persona_projection_gate", "next_gate"],
+        "properties": {
+          "source_dataset": { "type": "string" },
+          "raw_directory": { "type": "string" },
+          "record_unit": { "type": "string" },
+          "allowed_roles": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "prohibited_roles": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "source_internal_links": { "type": "string" },
+          "field_audit_status": { "enum": ["partially_confirmed", "pending", "not_started"] },
+          "persona_projection_gate": { "enum": ["confirmed_fields_only", "field_review_required", "mapping_test_only"] },
+          "next_gate": { "type": "string" }
+        }
+      }
+    }
+  }
+}

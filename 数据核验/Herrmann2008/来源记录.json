@@ -1,0 +1,408 @@
+{
+  "retrieved_on": "2026-10-19",
+  "dataset": {
+    "doi": "doi:10.5061/dryad.87301",
+    "url": "https://datadryad.org/dataset/doi:10.5061/dryad.87301",
+    "metadata_url": "https://datadryad.org/api/v2/datasets/doi%3A10.5061%2Fdryad.87301",
+    "license": "https://spdx.org/licenses/CC0-1.0.html",
+    "version": 3909
+  },
+  "official_file_records": [
+    {
+      "path": "HerrmannThoeniGaechter.zip",
+      "size": 578078,
+      "digest": "0a5d62d02243b59d66896fd2b2b655cc",
+      "digestType": "md5"
+    },
+    {
+      "path": "README_for_HerrmannThoeniGaechter.rtf",
+      "size": 18563,
+      "digest": "c9992d3a38e713090bec5bd5f797b99e",
+      "digestType": "md5"
+    }
+  ],
+  "official_download_status": {
+    "official_archive_downloaded": true,
+    "current_status": "User supplied the official ZIP and README; both match Dryad size/MD5. ZIP CRC passed.",
+    "verified_on": "2026-10-19",
+    "earlier_automated_attempts": {
+      "api": "401 Unauthorized",
+      "public_links": "403 Forbidden"
+    }
+  },
+  "readme": {
+    "path": "README_for_HerrmannThoeniGaechter.rtf",
+    "url": "https://raw.githubusercontent.com/SylvainEstebe/decision_making_modeling/43efa8e2ba54bcaeda48e129de7b066126b43f93/data/public_good/README_for_HerrmannThoeniGaechter.rtf",
+    "md5": "c9992d3a38e713090bec5bd5f797b99e",
+    "sha256": "e697b0f78f3b97102eb827f06d2b4882d03e426d32834646be410896edd12984",
+    "official_md5_matches": true
+  },
+  "paper": {
+    "path": "论文及补充材料.pdf",
+    "url": "https://www.alexandria.unisg.ch/server/api/core/bitstreams/4f4bd7e6-cee6-473c-b332-bbe31872d10f/content",
+    "sha256": "c1d0b78be393a55ed6a426e1dcee9f7fbd0a9fa7a0048a0415c04b31df728f5b",
+    "pages": 47,
+    "relevant_pdf_pages": {
+      "article": "1-6",
+      "supplement": "9-47",
+      "instructions": "20-25",
+      "procedures": "26-27",
+      "exceptions": "46"
+    }
+  },
+  "mirror_files": [
+    {
+      "name": "HerrmannThoeniGaechterARTICLE.do",
+      "url": "https://raw.githubusercontent.com/trungkiet2005/public-good-game/b5bc6c9b9b354ef6ca7765d2fd16cde610fdd306/AntisocialPunishment_Dataset/HerrmannThoeniGaechter/HerrmannThoeniGaechterARTICLE.do",
+      "size": 17966,
+      "git_blob_sha1": "05a4858a3f105439b6b51203c5e9f55f00892167",
+      "sha256": "fe1bbd9cd91c5a58e62730072da34c8b6cecca062def7bc57f3ad20e328da62b",
+      "git_blob_matches": true,
+      "official_zip_verified": true,
+      "official_member_sha256": "3f6ebb823966c71b7f3ef62acb995b3237ea1a65e3ee0c4c911879ee340e7496",
+      "official_member_comparison": "CRLF_to_LF_only"
+    },
+    {
+      "name": "HerrmannThoeniGaechterDATA.csv",
+      "url": "https://raw.githubusercontent.com/trungkiet2005/public-good-game/b5bc6c9b9b354ef6ca7765d2fd16cde610fdd306/AntisocialPunishment_Dataset/HerrmannThoeniGaechter/HerrmannThoeniGaechterDATA.csv",
+      "size": 6088976,
+      "git_blob_sha1": "4620e959a445df5f608b3e75aa69c07db91cf5b4",
+      "sha256": "c37c4b66441e2f89b03e0b60be136c80325ea47a15281253c782e747143e76f7",
+      "git_blob_matches": true,
+      "official_zip_verified": true,
+      "official_member_sha256": "c37c4b66441e2f89b03e0b60be136c80325ea47a15281253c782e747143e76f7",
+      "official_member_comparison": "byte_identical"
+    },
+    {
+      "name": "HerrmannThoeniGaechterDATA.dta",
+      "url": "https://raw.githubusercontent.com/trungkiet2005/public-good-game/b5bc6c9b9b354ef6ca7765d2fd16cde610fdd306/AntisocialPunishment_Dataset/HerrmannThoeniGaechter/HerrmannThoeniGaechterDATA.dta",
+      "size": 2706376,
+      "git_blob_sha1": "9ba6a9eb81f623ae6677d827812a3f3a47776c3f",
+      "sha256": "95f6e3738e4a9f67ca43c759505773a5e21de95076d0e93c4f9fdefd37c8b936",
+      "git_blob_matches": true,
+      "official_zip_verified": true,
+      "official_member_sha256": "95f6e3738e4a9f67ca43c759505773a5e21de95076d0e93c4f9fdefd37c8b936",
+      "official_member_comparison": "byte_identical"
+    },
+    {
+      "name": "HerrmannThoeniGaechterSOM.do",
+      "url": "https://raw.githubusercontent.com/trungkiet2005/public-good-game/b5bc6c9b9b354ef6ca7765d2fd16cde610fdd306/AntisocialPunishment_Dataset/HerrmannThoeniGaechter/HerrmannThoeniGaechterSOM.do",
+      "size": 40048,
+      "git_blob_sha1": "ac5093e9b4a6863b3bd9d9d473111c1bf3cb2675",
+      "sha256": "b68e91f6c23c786a4e57f341a67c54554d263b485d66b71c39291863ce44d4db",
+      "git_blob_matches": true,
+      "official_zip_verified": true,
+      "official_member_sha256": "881c9ce942e270bbf439b7c1b8ec2b06483bd777fe7b10c115621f3751808691",
+      "official_member_comparison": "CRLF_to_LF_only"
+    }
+  ],
+  "csv_cross_repository_evidence": {
+    "git_blob_sha1": "4620e959a445df5f608b3e75aa69c07db91cf5b4",
+    "repositories": [
+      "SylvainEstebe/decision_making_modeling@43efa8e2ba54bcaeda48e129de7b066126b43f93",
+      "jorgenhw/decision_making@cfeb9cdd791c89917eb48195cc8dcdde22cb35d7",
+      "LucaSchere/Mathematical-Methods-for-Data-Engineering@6c084308404e561b1fe1ad7ba418c842d79e5320"
+    ],
+    "limitation": "Matching mirror blobs alone did not establish official provenance. Resolved on 2026-10-19: the user-supplied ZIP matches Dryad size/MD5 and its CSV/DTA are byte-identical to the working copies."
+  },
+  "official_metadata": {
+    "_links": {
+      "self": {
+        "href": "/api/v2/datasets/doi%3A10.5061%2Fdryad.87301"
+      },
+      "stash:versions": {
+        "href": "/api/v2/datasets/doi%3A10.5061%2Fdryad.87301/versions"
+      },
+      "stash:version": {
+        "href": "/api/v2/versions/3909"
+      },
+      "stash:download": {
+        "href": "/api/v2/datasets/doi%3A10.5061%2Fdryad.87301/download"
+      },
+      "curies": [
+        {
+          "name": "stash",
+          "href": "https://github.com/datadryad/dryad-app/blob/main/documentation/apis/link_relations.md#{rel}",
+          "templated": "true"
+        }
+      ]
+    },
+    "identifier": "doi:10.5061/dryad.87301",
+    "id": 3887,
+    "storageSize": 596641,
+    "relatedPublicationISSN": "1095-9203",
+    "title": "Data from: Antisocial punishment across societies",
+    "authors": [
+      {
+        "firstName": "Benedikt",
+        "lastName": "Herrmann",
+        "affiliation": "University of Nottingham",
+        "affiliationROR": "https://ror.org/01ee9ar58",
+        "affiliations": [
+          {
+            "organization": "University of Nottingham",
+            "identifier": "https://ror.org/01ee9ar58"
+          }
+        ]
+      },
+      {
+        "firstName": "Christian",
+        "lastName": "Thöni",
+        "affiliation": "University of St.Gallen",
+        "affiliationROR": "https://ror.org/0561a3s31",
+        "affiliations": [
+          {
+            "organization": "University of St.Gallen",
+            "identifier": "https://ror.org/0561a3s31"
+          }
+        ]
+      },
+      {
+        "firstName": "Simon",
+        "lastName": "Gächter",
+        "affiliation": "University of Nottingham",
+        "affiliationROR": "https://ror.org/01ee9ar58",
+        "affiliations": [
+          {
+            "organization": "University of Nottingham",
+            "identifier": "https://ror.org/01ee9ar58"
+          }
+        ]
+      }
+    ],
+    "abstract": "We document the widespread existence of antisocial punishment, that is, the sanctioning of people who behave prosocially. Our evidence comes from public goods experiments that we conducted in 16 comparable participant pools around the world. However, there is a huge cross-societal variation. Some participant pools punished the high contributors as much as they punished the low contributors, whereas in others people only punished low contributors. In some participant pools, antisocial punishment was strong enough to remove the cooperation-enhancing effect of punishment. We also show that weak norms of civic cooperation and the weakness of the rule of law in a country are significant predictors of antisocial punishment. Our results show that punishment opportunities are socially beneficial only if complemented by strong social norms of cooperation.",
+    "keywords": [
+      "Punishment",
+      "Public goods experiments",
+      "Cross-cultural experiments",
+      "Antisocial Punishment"
+    ],
+    "usageNotes": "<div class=\"o-metadata__file-usage-entry\"><h4 class=\"o-heading__level3-file-title\">HerrmannThoeniGaechterDATA&CODE</h4><div class=\"o-metadata__file-description\">Contains the data and analysis code of Herrmann, Thoeni & Gaechter, Science 2008.</div><div class=\"o-metadata__file-name\">HerrmannThoeniGaechter.zip</br></div><div class=\"o-metadata__file-name\"></div></div>",
+    "locations": [
+      {
+        "place": "Ukraine"
+      },
+      {
+        "place": "United Kingdom"
+      },
+      {
+        "place": "Unites States of America"
+      },
+      {
+        "place": "Belarus"
+      },
+      {
+        "place": "Switzerland"
+      },
+      {
+        "place": "Oman"
+      },
+      {
+        "place": "Russia"
+      },
+      {
+        "place": "Greece"
+      },
+      {
+        "place": "Saudi Arabia"
+      },
+      {
+        "place": "South Korea"
+      },
+      {
+        "place": "Turkey"
+      },
+      {
+        "place": "China"
+      },
+      {
+        "place": "Denmark"
+      },
+      {
+        "place": "Australia"
+      },
+      {
+        "place": "Germany"
+      }
+    ],
+    "relatedWorks": [
+      {
+        "relationship": "primary_article",
+        "identifierType": "DOI",
+        "identifier": "https://doi.org/10.1126/science.1153808"
+      }
+    ],
+    "versionNumber": 1,
+    "versionStatus": "submitted",
+    "curationStatus": "Published",
+    "versionChanges": "none",
+    "publicationDate": "2017-12-07",
+    "lastModificationDate": "2020-06-24",
+    "visibility": "public",
+    "sharingLink": "http://datadryad.org/dataset/doi:10.5061/dryad.87301",
+    "changedFields": [
+      "none"
+    ],
+    "license": "https://spdx.org/licenses/CC0-1.0.html",
+    "metrics": {
+      "views": 1137,
+      "downloads": 230,
+      "citations": 0
+    }
+  },
+  "official_file_list": {
+    "_links": {
+      "self": {
+        "href": "/api/v2/versions/3909/files"
+      },
+      "first": {
+        "href": "/api/v2/versions/3909/files"
+      },
+      "last": {
+        "href": "/api/v2/versions/3909/files?page=1"
+      }
+    },
+    "count": 2,
+    "total": 2,
+    "_embedded": {
+      "stash:files": [
+        {
+          "_links": {
+            "self": {
+              "href": "/api/v2/files/22998"
+            },
+            "stash:dataset": {
+              "href": "/api/v2/datasets/doi%3A10.5061%2Fdryad.87301"
+            },
+            "stash:version": {
+              "href": "/api/v2/versions/3909"
+            },
+            "stash:files": {
+              "href": "/api/v2/versions/3909/files"
+            },
+            "stash:download": {
+              "href": "/api/v2/files/22998/download"
+            },
+            "curies": [
+              {
+                "name": "stash",
+                "href": "https://github.com/datadryad/dryad-app/blob/main/documentation/apis/link_relations.md#{rel}",
+                "templated": "true"
+              }
+            ]
+          },
+          "path": "HerrmannThoeniGaechter.zip",
+          "size": 578078,
+          "mimeType": "application/zip",
+          "status": "created",
+          "digest": "0a5d62d02243b59d66896fd2b2b655cc",
+          "digestType": "md5",
+          "description": "Contains the data and analysis code of Herrmann, Thoeni & Gaechter, Science 2008."
+        },
+        {
+          "_links": {
+            "self": {
+              "href": "/api/v2/files/22999"
+            },
+            "stash:dataset": {
+              "href": "/api/v2/datasets/doi%3A10.5061%2Fdryad.87301"
+            },
+            "stash:version": {
+              "href": "/api/v2/versions/3909"
+            },
+            "stash:files": {
+              "href": "/api/v2/versions/3909/files"
+            },
+            "stash:download": {
+              "href": "/api/v2/files/22999/download"
+            },
+            "curies": [
+              {
+                "name": "stash",
+                "href": "https://github.com/datadryad/dryad-app/blob/main/documentation/apis/link_relations.md#{rel}",
+                "templated": "true"
+              }
+            ]
+          },
+          "path": "README_for_HerrmannThoeniGaechter.rtf",
+          "size": 18563,
+          "mimeType": "application/rtf",
+          "status": "created",
+          "digest": "c9992d3a38e713090bec5bd5f797b99e",
+          "digestType": "md5",
+          "description": "Contains the data and analysis code of Herrmann, Thoeni & Gaechter, Science 2008."
+        }
+      ]
+    }
+  },
+  "public_download_attempts": [
+    {
+      "file": "HerrmannThoeniGaechter.zip",
+      "error": "HTTP Error 403: Forbidden",
+      "url": "https://datadryad.org/downloads/file_stream/22998"
+    },
+    {
+      "file": "README_for_HerrmannThoeniGaechter.rtf",
+      "error": "HTTP Error 403: Forbidden",
+      "url": "https://datadryad.org/downloads/file_stream/22999"
+    }
+  ],
+  "official_local_files": {
+    "HerrmannThoeniGaechter.zip": "../../实验/public_goods/data/raw/doi_10_5061_dryad_87301__v20171207/HerrmannThoeniGaechter.zip",
+    "README_for_HerrmannThoeniGaechter.rtf": "../../实验/public_goods/data/raw/doi_10_5061_dryad_87301__v20171207/README_for_HerrmannThoeniGaechter.rtf"
+  },
+  "official_archive_verification": {
+    "date": "2026-10-19",
+    "provided_by": "user",
+    "files": [
+      {
+        "name": "HerrmannThoeniGaechter.zip",
+        "size": 578078,
+        "md5": "0a5d62d02243b59d66896fd2b2b655cc",
+        "sha256": "eb78d1128787355734ce05db8a9e0912a6eec5637adf00d278917f5a9dc4b2b0",
+        "official_size_matches": true,
+        "official_md5_matches": true
+      },
+      {
+        "name": "README_for_HerrmannThoeniGaechter.rtf",
+        "size": 18563,
+        "md5": "c9992d3a38e713090bec5bd5f797b99e",
+        "sha256": "e697b0f78f3b97102eb827f06d2b4882d03e426d32834646be410896edd12984",
+        "official_size_matches": true,
+        "official_md5_matches": true
+      }
+    ],
+    "members": [
+      {
+        "name": "HerrmannThoeniGaechterARTICLE.do",
+        "size": 18427,
+        "sha256": "3f6ebb823966c71b7f3ef62acb995b3237ea1a65e3ee0c4c911879ee340e7496",
+        "working_copy_comparison": "CRLF_to_LF_only"
+      },
+      {
+        "name": "HerrmannThoeniGaechterDATA.csv",
+        "size": 6088976,
+        "sha256": "c37c4b66441e2f89b03e0b60be136c80325ea47a15281253c782e747143e76f7",
+        "working_copy_comparison": "byte_identical"
+      },
+      {
+        "name": "HerrmannThoeniGaechterDATA.dta",
+        "size": 2706376,
+        "sha256": "95f6e3738e4a9f67ca43c759505773a5e21de95076d0e93c4f9fdefd37c8b936",
+        "working_copy_comparison": "byte_identical"
+      },
+      {
+        "name": "HerrmannThoeniGaechterSOM.do",
+        "size": 41012,
+        "sha256": "881c9ce942e270bbf439b7c1b8ec2b06483bd777fe7b10c115621f3751808691",
+        "working_copy_comparison": "CRLF_to_LF_only"
+      }
+    ],
+    "crc_passed": true,
+    "ignored_metadata_members": [
+      "__MACOSX/._HerrmannThoeniGaechterDATA.csv",
+      "__MACOSX/._HerrmannThoeniGaechterSOM.do",
+      "__MACOSX/._HerrmannThoeniGaechterARTICLE.do"
+    ]
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "status": "completed_repaired",
+  "protocol": "ollama-repaired-continuation-v1",
+  "recovery": {
+    "source": "/Users/yxx/科研/毕设/实验/public_goods/runs/live/ollama_qwen35_full_20261025_001",
+    "arms": {
+      "A": {
+        "operation": "reuse_completed",
+        "audit_passed": true
+      },
+      "B": {
+        "operation": "repair_failed",
+        "prefix_audit": {
+          "passed": true,
+          "recorded_requests_reproduced": 164,
+          "committed_events_checked": 33,
+          "state_transitions_checked": 128,
+          "pending_participants": [
+            "member-a",
+            "member-b"
+          ],
+          "next_stage": {
+            "phase": "P",
+            "round": 5,
+            "stage": "contribution"
+          }
+        }
+      },
+      "C": {
+        "operation": "start_unattempted"
+      }
+    },
+    "real_model_calls_in_preview": 0,
+    "protocol_deviation": "Visible-only evidence decoding applies after the repair boundary. Original exhausted responses remain recorded; this continuation is an exploratory engineering run."
+  },
+  "arms": {
+    "A": {
+      "operation": "reuse_completed",
+      "status": "completed",
+      "summary": {
+        "status": "completed",
+        "failure": null,
+        "implementation": "A",
+        "fixture_only": false,
+        "execution_mode": "live",
+        "model_id": "qwen3.5:9b",
+        "simulated_calls": 0,
+        "real_api_calls": 120,
+        "invalid_outputs": 0,
+        "transient_errors": 0,
+        "valid_decisions": 120,
+        "valid_judgments": 0,
+        "evidence_path_normalizations": 0,
+        "settled_person_rounds": 80,
+        "phase": "P",
+        "round": 10,
+        "stage": "finished",
+        "measured_model_tokens": 233325,
+        "model_cost_usd": null,
+        "model_cost_cny_upper": null,
+        "shared_budget": null,
+        "replay_verified": true
+      },
+      "new_real_model_calls": 0
+    },
+    "B": {
+      "operation": "repair_failed",
+      "status": "completed",
+      "recovery": {
+        "prefix_audit": {
+          "passed": true,
+          "recorded_requests_reproduced": 164,
+          "committed_events_checked": 33,
+          "state_transitions_checked": 128,
+          "pending_participants": [
+            "member-a",
+            "member-b"
+          ],
+          "next_stage": {
+            "phase": "P",
+            "round": 5,
+            "stage": "contribution"
+          }
+        },
+        "summary": {
+          "status": "completed",
+          "failure": null,
+          "implementation": "B",
+          "fixture_only": false,
+          "execution_mode": "live",
+          "model_id": "qwen3.5:9b",
+          "simulated_calls": 0,
+          "real_api_calls": 93,
+          "invalid_outputs": 17,
+          "transient_errors": 0,
+          "valid_decisions": 120,
+          "valid_judgments": 120,
+          "evidence_path_normalizations": 4,
+          "settled_person_rounds": 80,
+          "phase": "P",
+          "round": 10,
+          "stage": "finished",
+          "measured_model_tokens": 694836,
+          "model_cost_usd": null,
+          "model_cost_cny_upper": null,
+          "shared_budget": null,
+          "replay_verified": true
+        },
+        "new_network_requests": 93
+      },
+      "summary": {
+        "status": "completed",
+        "failure": null,
+        "implementation": "B",
+        "fixture_only": false,
+        "execution_mode": "live",
+        "model_id": "qwen3.5:9b",
+        "simulated_calls": 0,
+        "real_api_calls": 93,
+        "invalid_outputs": 17,
+        "transient_errors": 0,
+        "valid_decisions": 120,
+        "valid_judgments": 120,
+        "evidence_path_normalizations": 4,
+        "settled_person_rounds": 80,
+        "phase": "P",
+        "round": 10,
+        "stage": "finished",
+        "measured_model_tokens": 694836,
+        "model_cost_usd": null,
+        "model_cost_cny_upper": null,
+        "shared_budget": null,
+        "replay_verified": true
+      },
+      "new_real_model_calls": 93
+    },
+    "C": {
+      "operation": "start_unattempted",
+      "status": "completed",
+      "summary": {
+        "status": "completed",
+        "failure": null,
+        "implementation": "C",
+        "fixture_only": false,
+        "execution_mode": "live",
+        "model_id": "qwen3.5:9b",
+        "simulated_calls": 0,
+        "real_api_calls": 240,
+        "invalid_outputs": 0,
+        "transient_errors": 0,
+        "valid_decisions": 120,
+        "valid_judgments": 120,
+        "evidence_path_normalizations": 0,
+        "settled_person_rounds": 80,
+        "phase": "P",
+        "round": 10,
+        "stage": "finished",
+        "measured_model_tokens": 1292392,
+        "model_cost_usd": null,
+        "model_cost_cny_upper": null,
+        "shared_budget": null,
+        "replay_verified": true
+      },
+      "new_real_model_calls": 240
+    }
+  },
+  "new_real_model_calls": 333,
+  "human_likeness_evaluated": false,
+  "confirmatory_comparison": false
+}

@@ -60,11 +60,24 @@ venv/
 
 # Current thesis workspace: keep local research inputs and execution artifacts.
 .DS_Store
-/实验/public_goods/data/
-/实验/public_goods/runs/
+/实验/public_goods/data/*
+/实验/public_goods/runs/*
 /数据核验/*/official/
 /数据核验/*/mirror/
 /数据核验/*/official_*/
 /毕设文件/
 /文档/
 
+
+# Reviewed aggregate statistics and synthetic experiment results.
+!/实验/public_goods/data/reference/
+/实验/public_goods/data/reference/*
+!/实验/public_goods/data/reference/开发集统计.json
+!/实验/public_goods/runs/live/
+/实验/public_goods/runs/live/*
+!/实验/public_goods/runs/live/history.zip
+!/实验/public_goods/runs/live/ollama_qwen35_full_repair_20261025_001/
+!/实验/public_goods/runs/live/ollama_qwen35_full_repair_20261025_001/*
+!/实验/public_goods/runs/offline/
+/实验/public_goods/runs/offline/*
+!/实验/public_goods/runs/offline/checks.zip

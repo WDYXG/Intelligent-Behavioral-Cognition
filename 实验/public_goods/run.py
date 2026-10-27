@@ -11,6 +11,10 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 
+from public_goods.artifacts import compact_cli
+
+
+@compact_cli
 def deepseek_trial(argv=None):
     from public_goods.agents.agent_a import AgentRunner
     from public_goods.agents.agent_bc import BRunner, CRunner
@@ -97,11 +101,12 @@ def deepseek_trial(argv=None):
     print(json.dumps({"status": report["status"], "budget": report["budget"]}, ensure_ascii=False, indent=2))
 
 
+@compact_cli
 def main(argv=None):
     argv = list(sys.argv[1:] if argv is None else argv)
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "command", choices=("reference", "score", "compare", "world-demo", "agent-a-demo", "agent-b-demo", "agent-c-demo", "preflight", "deepseek-trial", "paired-diagnostic", "sequential-diagnostic"),
+        "command", choices=("reference", "score", "compare", "world-demo", "agent-a-demo", "agent-b-demo", "agent-c-demo", "preflight", "deepseek-trial", "ollama-trial", "ollama-resume", "paired-diagnostic", "sequential-diagnostic"),
         help="reference：真人参照；score/compare：评分/比较；*-demo：离线验收；preflight：统一验收；deepseek-trial：试运行计划（默认不调用）",
     )
     # Leave command-specific options (including --help) to the selected module.
@@ -120,6 +125,12 @@ def main(argv=None):
         run_preflight(argv[1:])
     elif args.command == "deepseek-trial":
         deepseek_trial(argv[1:])
+    elif args.command == "ollama-trial":
+        from public_goods.experiments.ollama_trial import main as run_local
+        run_local(argv[1:])
+    elif args.command == "ollama-resume":
+        from public_goods.experiments.ollama_trial import main_resume as run_recovery
+        run_recovery(argv[1:])
     elif args.command == "paired-diagnostic":
         from public_goods.experiments.paired_diagnostic import main as run_diagnostic
         run_diagnostic(argv[1:])

@@ -14,6 +14,7 @@ from io import BytesIO
 import json
 import math
 from pathlib import Path
+from public_goods import artifacts
 import zipfile
 
 import numpy as np
@@ -284,7 +285,7 @@ def primary_difference(first, second, human, repeats=REPEATS):
 
 def load_agent(path):
     people, peers = [], []
-    for line in path.read_text().splitlines():
+    for line in artifacts.read_text(path).splitlines():
         row = json.loads(line)
         require(set(KEY + ["contribution", "received_points", "targets"]).issubset(row), "Missing JSONL fields")
         require(isinstance(row["group_id"], str) and isinstance(row["participant_id"], str), "Use string agent IDs")
@@ -361,12 +362,12 @@ def main(argv=None):
         result = {"reference": split, "source_csv_sha256": digest,
                   "plan_sha256": hashlib.sha256(PLAN.read_bytes()).hexdigest(),
                   "scoring_code_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-                  "trajectory_sha256": hashlib.sha256(args.trajectory.read_bytes()).hexdigest(),
+                  "trajectory_sha256": hashlib.sha256(artifacts.read_bytes(args.trajectory)).hexdigest(),
                   "score": primary_score(agent, person), "agent_behavior": behavior_statistics(agent, agent_peers),
                   "human_behavior": behavior_statistics(person, peers)}
         if args.command == "compare":
             other, _ = load_agent(args.comparator)
-            result["comparator_sha256"] = hashlib.sha256(args.comparator.read_bytes()).hexdigest()
+            result["comparator_sha256"] = hashlib.sha256(artifacts.read_bytes(args.comparator)).hexdigest()
             result["primary_comparison"] = primary_difference(agent, other, person)
         save_json(args.output, result)
         print(json.dumps(result.get("primary_comparison", result["score"]), ensure_ascii=False, indent=2))

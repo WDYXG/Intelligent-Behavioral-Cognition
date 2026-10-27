@@ -10,6 +10,7 @@ from dataclasses import asdict
 import hashlib
 import json
 from pathlib import Path
+from public_goods import artifacts
 
 from public_goods.agents.agent_bc import BRunner, CRunner
 from public_goods.agents.cognition import CognitiveUpdater, STAGE_REVISION, PROMPT_REVISION
@@ -32,7 +33,7 @@ VARIANTS = (("v4_retain", STAGE_REVISION, "retain"),
 
 
 def rows(path):
-    return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+    return [json.loads(line) for line in artifacts.read_text(path).splitlines() if line.strip()]
 
 
 def checkpoint_name(key):
@@ -42,7 +43,7 @@ def checkpoint_name(key):
 def load_checkpoints(folder, arm):
     """Replay all original requests; capture only state already available then."""
     folder = Path(folder)
-    config = json.loads((folder / "config.json").read_text())
+    config = artifacts.read_json(folder / "config.json")
     if config["implementation"] != arm or config["prompt_revision"] != STAGE_REVISION:
         raise ValueError("This diagnosis requires a preserved v4 run of the specified arm")
     calls, events = rows(folder / "calls.jsonl"), rows(folder / "events.jsonl")
@@ -106,7 +107,7 @@ def run_diagnostic(output, model, sources, repetitions=2, *, allow_live=False):
     protocol["settings"]["allow_live"] = allow_live
     protocol["execution_mode"] = model.mode
     protocol["sources"] = {arm: {"folder": str(Path(folder).resolve()),
-        "sha256": {name: hashlib.sha256((Path(folder) / name).read_bytes()).hexdigest()
+        "sha256": {name: hashlib.sha256(artifacts.read_bytes(Path(folder) / name)).hexdigest()
                    for name in ("config.json", "calls.jsonl", "events.jsonl", "state_transitions.jsonl", "trajectory.jsonl")}}
         for arm, folder in sources.items()}
     protocol["source_sha256"] = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
@@ -184,6 +185,7 @@ def run_diagnostic(output, model, sources, repetitions=2, *, allow_live=False):
     return report
 
 
+@artifacts.compact_cli
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path)

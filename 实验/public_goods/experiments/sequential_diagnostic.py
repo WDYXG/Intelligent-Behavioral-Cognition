@@ -6,6 +6,7 @@ from decimal import Decimal
 import hashlib
 import json
 from pathlib import Path
+from public_goods import artifacts
 
 from public_goods.agents.agent_bc import BRunner, CRunner
 from public_goods.agents.cognition import PROMPT_REVISION
@@ -166,8 +167,8 @@ class _RecordedModel(MockModel):
 def audit_saved_diagnostic(output):
     """Reconstruct exact requests, previous X, commits and feedback offline."""
     output = Path(output)
-    read = lambda p: json.loads(p.read_text())
-    rows = lambda p: [json.loads(s) for s in p.read_text().splitlines()]
+    read = lambda p: artifacts.read_json(p)
+    rows = lambda p: [json.loads(s) for s in artifacts.read_text(p).splitlines()]
     protocol, report = read(output / "plan.json"), read(output / "report.json")
     if report["status"] != "checkpoint_completed":
         raise ValueError("Only a completed checkpoint can pass this audit")
@@ -206,6 +207,7 @@ def audit_saved_diagnostic(output):
             "scope": "Exact request/state/World/retry replay; semantic correctness reviewed separately"}
 
 
+@artifacts.compact_cli
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path)

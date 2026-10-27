@@ -1,0 +1,934 @@
+{
+  "status": "completed",
+  "model": "qwen3.5:9b",
+  "human_groups": 63,
+  "human_phase_means": {
+    "N": 8.546031746031746,
+    "P": 12.9234126984127
+  },
+  "human_behavior": {
+    "punishment_by_contribution_difference": [
+      {
+        "deviation": [
+          -20,
+          -11
+        ],
+        "opportunities": 349,
+        "mean_points": 2.2664756446991405,
+        "positive_rate": 0.66189111747851
+      },
+      {
+        "deviation": [
+          -10,
+          -1
+        ],
+        "opportunities": 1855,
+        "mean_points": 0.9671159029649595,
+        "positive_rate": 0.41778975741239893
+      },
+      {
+        "deviation": [
+          0,
+          0
+        ],
+        "opportunities": 3152,
+        "mean_points": 0.21605329949238578,
+        "positive_rate": 0.07233502538071065
+      },
+      {
+        "deviation": [
+          1,
+          10
+        ],
+        "opportunities": 1855,
+        "mean_points": 0.4102425876010782,
+        "positive_rate": 0.16873315363881403
+      },
+      {
+        "deviation": [
+          11,
+          20
+        ],
+        "opportunities": 349,
+        "mean_points": 0.5959885386819485,
+        "positive_rate": 0.1833810888252149
+      }
+    ],
+    "next_round_change": [
+      {
+        "below_group_mean": true,
+        "received_punishment": true,
+        "person_transitions": 562,
+        "groups": 60,
+        "mean_change": 2.8629893238434163,
+        "mean_prior_contribution": 6.193950177935943
+      },
+      {
+        "below_group_mean": true,
+        "received_punishment": false,
+        "person_transitions": 204,
+        "groups": 35,
+        "mean_change": 1.2450980392156863,
+        "mean_prior_contribution": 9.004901960784315
+      },
+      {
+        "below_group_mean": false,
+        "received_punishment": true,
+        "person_transitions": 361,
+        "groups": 45,
+        "mean_change": -1.4626038781163435,
+        "mean_prior_contribution": 12.988919667590027
+      },
+      {
+        "below_group_mean": false,
+        "received_punishment": false,
+        "person_transitions": 1141,
+        "groups": 62,
+        "mean_change": -0.7581069237510956,
+        "mean_prior_contribution": 16.964066608238387
+      }
+    ],
+    "reaction_note": "P阶段内1→2至9→10；无跨阶段或末轮连接。描述关联，未控制选择偏差或回归均值。"
+  },
+  "reference_sha256": "22ebd948d854f88f8f676b2f65d26dc99f15acf84a4001646df5d61b8ad46a97",
+  "evaluation_split_used": false,
+  "model_calls_in_review": 0,
+  "uncertainty_estimated": false,
+  "confirmatory_comparison": false,
+  "analysis_source_sha256": "5f4b4de56abe2dcd11086ad6c27deab25e9efe121c29b7f97221b90a106d8dc0",
+  "evaluation_source_sha256": "9195b852f9a4780dfaf57a9499e8eee23ffe63f3faeed97aa2cae39a3fe48230",
+  "audit_source_sha256": "99e71b042ca84b863bac8bfa3eeeb5ae265f1c5d02898fda6a2c41e4b3025e35",
+  "arms": {
+    "A": {
+      "source": "/Users/yxx/科研/毕设/实验/public_goods/runs/live/ollama_qwen35_full_repair_20261025_001/A",
+      "groups": 1,
+      "phase_means": {
+        "N": 7.575,
+        "P": 9.7
+      },
+      "phase_gap": 2.124999999999999,
+      "mean_round_normalized_W1": 0.23609126984126982,
+      "N_normalized_W1": 0.22811507936507938,
+      "P_normalized_W1": 0.24406746031746035,
+      "total_assigned_punishment": 249,
+      "mean_points_per_available_target": 2.075,
+      "nonzero_punishment_rate": 0.225,
+      "behavior": {
+        "punishment_by_contribution_difference": [
+          {
+            "deviation": [
+              -20,
+              -11
+            ],
+            "opportunities": 22,
+            "mean_points": 2.0454545454545454,
+            "positive_rate": 0.22727272727272727
+          },
+          {
+            "deviation": [
+              -10,
+              -1
+            ],
+            "opportunities": 16,
+            "mean_points": 5.25,
+            "positive_rate": 0.625
+          },
+          {
+            "deviation": [
+              0,
+              0
+            ],
+            "opportunities": 44,
+            "mean_points": 0.6818181818181818,
+            "positive_rate": 0.06818181818181818
+          },
+          {
+            "deviation": [
+              1,
+              10
+            ],
+            "opportunities": 16,
+            "mean_points": 2.5,
+            "positive_rate": 0.25
+          },
+          {
+            "deviation": [
+              11,
+              20
+            ],
+            "opportunities": 22,
+            "mean_points": 2.272727272727273,
+            "positive_rate": 0.22727272727272727
+          }
+        ],
+        "next_round_change": [
+          {
+            "below_group_mean": true,
+            "received_punishment": true,
+            "person_transitions": 10,
+            "groups": 1,
+            "mean_change": 6.1,
+            "mean_prior_contribution": 4.1
+          },
+          {
+            "below_group_mean": true,
+            "received_punishment": false,
+            "person_transitions": 12,
+            "groups": 1,
+            "mean_change": 1.6666666666666667,
+            "mean_prior_contribution": 5.0
+          },
+          {
+            "below_group_mean": false,
+            "received_punishment": true,
+            "person_transitions": 9,
+            "groups": 1,
+            "mean_change": -4.111111111111111,
+            "mean_prior_contribution": 17.444444444444443
+          },
+          {
+            "below_group_mean": false,
+            "received_punishment": false,
+            "person_transitions": 5,
+            "groups": 1,
+            "mean_change": -6.0,
+            "mean_prior_contribution": 19.0
+          }
+        ],
+        "reaction_note": "P阶段内1→2至9→10；无跨阶段或末轮连接。描述关联，未控制选择偏差或回归均值。"
+      },
+      "round_means": [
+        {
+          "phase": "N",
+          "round": 1,
+          "mean": 8.75
+        },
+        {
+          "phase": "N",
+          "round": 2,
+          "mean": 10.0
+        },
+        {
+          "phase": "N",
+          "round": 3,
+          "mean": 10.75
+        },
+        {
+          "phase": "N",
+          "round": 4,
+          "mean": 11.25
+        },
+        {
+          "phase": "N",
+          "round": 5,
+          "mean": 10.0
+        },
+        {
+          "phase": "N",
+          "round": 6,
+          "mean": 5.0
+        },
+        {
+          "phase": "N",
+          "round": 7,
+          "mean": 5.0
+        },
+        {
+          "phase": "N",
+          "round": 8,
+          "mean": 5.0
+        },
+        {
+          "phase": "N",
+          "round": 9,
+          "mean": 5.0
+        },
+        {
+          "phase": "N",
+          "round": 10,
+          "mean": 5.0
+        },
+        {
+          "phase": "P",
+          "round": 1,
+          "mean": 5.25
+        },
+        {
+          "phase": "P",
+          "round": 2,
+          "mean": 8.0
+        },
+        {
+          "phase": "P",
+          "round": 3,
+          "mean": 15.0
+        },
+        {
+          "phase": "P",
+          "round": 4,
+          "mean": 8.75
+        },
+        {
+          "phase": "P",
+          "round": 5,
+          "mean": 7.5
+        },
+        {
+          "phase": "P",
+          "round": 6,
+          "mean": 7.5
+        },
+        {
+          "phase": "P",
+          "round": 7,
+          "mean": 12.5
+        },
+        {
+          "phase": "P",
+          "round": 8,
+          "mean": 15.0
+        },
+        {
+          "phase": "P",
+          "round": 9,
+          "mean": 8.75
+        },
+        {
+          "phase": "P",
+          "round": 10,
+          "mean": 8.75
+        }
+      ],
+      "contribution_counts": {
+        "N": {
+          "5": 31,
+          "10": 1,
+          "15": 4,
+          "18": 1,
+          "20": 3
+        },
+        "P": {
+          "0": 1,
+          "1": 1,
+          "5": 23,
+          "15": 5,
+          "17": 1,
+          "20": 9
+        }
+      },
+      "contribution_changes_per_agent": {
+        "member-a": 10,
+        "member-b": 5,
+        "member-c": 5,
+        "member-d": 6
+      },
+      "judgment_uncertainty": {
+        "behavior_expectation": {},
+        "normative_expectation": {},
+        "personal_norm": {}
+      },
+      "accepted_judgment_decoding": {},
+      "recorded_responses_in_complete_trajectory": 120,
+      "invalid_outputs_in_complete_trajectory": 0,
+      "finish_reasons": {
+        "stop": 120
+      },
+      "fingerprints": [
+        "ollama:0.40.11:d63f830f28d515fefea546f213fca7a75e9dd5176ef51a6deabc952d1c99a911"
+      ],
+      "trajectory_sha256": "fbc99de3cc62401c075b9c5dee8375747806c0e3afa9fb72bc0376f3191568ef"
+    },
+    "B": {
+      "source": "/Users/yxx/科研/毕设/实验/public_goods/runs/live/ollama_qwen35_full_repair_20261025_001/B",
+      "groups": 1,
+      "phase_means": {
+        "N": 13.625,
+        "P": 12.5
+      },
+      "phase_gap": -1.125,
+      "mean_round_normalized_W1": 0.29851190476190476,
+      "N_normalized_W1": 0.3798611111111111,
+      "P_normalized_W1": 0.21716269841269836,
+      "total_assigned_punishment": 285,
+      "mean_points_per_available_target": 2.375,
+      "nonzero_punishment_rate": 0.4,
+      "behavior": {
+        "punishment_by_contribution_difference": [
+          {
+            "deviation": [
+              -20,
+              -11
+            ],
+            "opportunities": 33,
+            "mean_points": 3.1818181818181817,
+            "positive_rate": 0.48484848484848486
+          },
+          {
+            "deviation": [
+              -10,
+              -1
+            ],
+            "opportunities": 0,
+            "mean_points": null,
+            "positive_rate": null
+          },
+          {
+            "deviation": [
+              0,
+              0
+            ],
+            "opportunities": 54,
+            "mean_points": 2.685185185185185,
+            "positive_rate": 0.48148148148148145
+          },
+          {
+            "deviation": [
+              1,
+              10
+            ],
+            "opportunities": 0,
+            "mean_points": null,
+            "positive_rate": null
+          },
+          {
+            "deviation": [
+              11,
+              20
+            ],
+            "opportunities": 33,
+            "mean_points": 1.0606060606060606,
+            "positive_rate": 0.18181818181818182
+          }
+        ],
+        "next_round_change": [
+          {
+            "below_group_mean": true,
+            "received_punishment": true,
+            "person_transitions": 12,
+            "groups": 1,
+            "mean_change": 5.0,
+            "mean_prior_contribution": 0.0
+          },
+          {
+            "below_group_mean": true,
+            "received_punishment": false,
+            "person_transitions": 2,
+            "groups": 1,
+            "mean_change": 10.0,
+            "mean_prior_contribution": 0.0
+          },
+          {
+            "below_group_mean": false,
+            "received_punishment": true,
+            "person_transitions": 15,
+            "groups": 1,
+            "mean_change": -2.6666666666666665,
+            "mean_prior_contribution": 20.0
+          },
+          {
+            "below_group_mean": false,
+            "received_punishment": false,
+            "person_transitions": 7,
+            "groups": 1,
+            "mean_change": -5.714285714285714,
+            "mean_prior_contribution": 20.0
+          }
+        ],
+        "reaction_note": "P阶段内1→2至9→10；无跨阶段或末轮连接。描述关联，未控制选择偏差或回归均值。"
+      },
+      "round_means": [
+        {
+          "phase": "N",
+          "round": 1,
+          "mean": 10.0
+        },
+        {
+          "phase": "N",
+          "round": 2,
+          "mean": 11.25
+        },
+        {
+          "phase": "N",
+          "round": 3,
+          "mean": 12.5
+        },
+        {
+          "phase": "N",
+          "round": 4,
+          "mean": 12.5
+        },
+        {
+          "phase": "N",
+          "round": 5,
+          "mean": 15.0
+        },
+        {
+          "phase": "N",
+          "round": 6,
+          "mean": 15.0
+        },
+        {
+          "phase": "N",
+          "round": 7,
+          "mean": 15.0
+        },
+        {
+          "phase": "N",
+          "round": 8,
+          "mean": 15.0
+        },
+        {
+          "phase": "N",
+          "round": 9,
+          "mean": 15.0
+        },
+        {
+          "phase": "N",
+          "round": 10,
+          "mean": 15.0
+        },
+        {
+          "phase": "P",
+          "round": 1,
+          "mean": 15.0
+        },
+        {
+          "phase": "P",
+          "round": 2,
+          "mean": 15.0
+        },
+        {
+          "phase": "P",
+          "round": 3,
+          "mean": 15.0
+        },
+        {
+          "phase": "P",
+          "round": 4,
+          "mean": 10.0
+        },
+        {
+          "phase": "P",
+          "round": 5,
+          "mean": 5.0
+        },
+        {
+          "phase": "P",
+          "round": 6,
+          "mean": 15.0
+        },
+        {
+          "phase": "P",
+          "round": 7,
+          "mean": 15.0
+        },
+        {
+          "phase": "P",
+          "round": 8,
+          "mean": 10.0
+        },
+        {
+          "phase": "P",
+          "round": 9,
+          "mean": 10.0
+        },
+        {
+          "phase": "P",
+          "round": 10,
+          "mean": 15.0
+        }
+      ],
+      "contribution_counts": {
+        "N": {
+          "10": 11,
+          "15": 29
+        },
+        "P": {
+          "0": 15,
+          "20": 25
+        }
+      },
+      "contribution_changes_per_agent": {
+        "member-a": 4,
+        "member-b": 6,
+        "member-c": 2,
+        "member-d": 4
+      },
+      "judgment_uncertainty": {
+        "behavior_expectation": {
+          "unknown": 111,
+          "high": 7,
+          "medium": 2
+        },
+        "normative_expectation": {
+          "unknown": 115,
+          "medium": 5
+        },
+        "personal_norm": {
+          "unknown": 82,
+          "medium": 38
+        }
+      },
+      "accepted_judgment_decoding": {
+        "free": 74,
+        "visible": 46
+      },
+      "recorded_responses_in_complete_trajectory": 257,
+      "invalid_outputs_in_complete_trajectory": 17,
+      "finish_reasons": {
+        "stop": 256,
+        "length": 1
+      },
+      "fingerprints": [
+        "ollama:0.40.11:d63f830f28d515fefea546f213fca7a75e9dd5176ef51a6deabc952d1c99a911"
+      ],
+      "trajectory_sha256": "de525d6b9f29f1294e5746c3b2fd0d2a7ec8d4ff77200adf000677f2c28965ba"
+    },
+    "C": {
+      "source": "/Users/yxx/科研/毕设/实验/public_goods/runs/live/ollama_qwen35_full_repair_20261025_001/C",
+      "groups": 1,
+      "phase_means": {
+        "N": 14.125,
+        "P": 17.875
+      },
+      "phase_gap": 3.75,
+      "mean_round_normalized_W1": 0.32562500000000005,
+      "N_normalized_W1": 0.38125,
+      "P_normalized_W1": 0.26999999999999996,
+      "total_assigned_punishment": 199,
+      "mean_points_per_available_target": 1.6583333333333334,
+      "nonzero_punishment_rate": 0.3333333333333333,
+      "behavior": {
+        "punishment_by_contribution_difference": [
+          {
+            "deviation": [
+              -20,
+              -11
+            ],
+            "opportunities": 12,
+            "mean_points": 1.9166666666666667,
+            "positive_rate": 0.4166666666666667
+          },
+          {
+            "deviation": [
+              -10,
+              -1
+            ],
+            "opportunities": 3,
+            "mean_points": 1.6666666666666667,
+            "positive_rate": 0.3333333333333333
+          },
+          {
+            "deviation": [
+              0,
+              0
+            ],
+            "opportunities": 90,
+            "mean_points": 1.5666666666666667,
+            "positive_rate": 0.3111111111111111
+          },
+          {
+            "deviation": [
+              1,
+              10
+            ],
+            "opportunities": 3,
+            "mean_points": 5.0,
+            "positive_rate": 1.0
+          },
+          {
+            "deviation": [
+              11,
+              20
+            ],
+            "opportunities": 12,
+            "mean_points": 1.25,
+            "positive_rate": 0.25
+          }
+        ],
+        "next_round_change": [
+          {
+            "below_group_mean": true,
+            "received_punishment": true,
+            "person_transitions": 4,
+            "groups": 1,
+            "mean_change": 11.25,
+            "mean_prior_contribution": 3.75
+          },
+          {
+            "below_group_mean": true,
+            "received_punishment": false,
+            "person_transitions": 0,
+            "groups": 0,
+            "mean_change": null,
+            "mean_prior_contribution": null
+          },
+          {
+            "below_group_mean": false,
+            "received_punishment": true,
+            "person_transitions": 23,
+            "groups": 1,
+            "mean_change": -1.9565217391304348,
+            "mean_prior_contribution": 20.0
+          },
+          {
+            "below_group_mean": false,
+            "received_punishment": false,
+            "person_transitions": 9,
+            "groups": 1,
+            "mean_change": 0.0,
+            "mean_prior_contribution": 20.0
+          }
+        ],
+        "reaction_note": "P阶段内1→2至9→10；无跨阶段或末轮连接。描述关联，未控制选择偏差或回归均值。"
+      },
+      "round_means": [
+        {
+          "phase": "N",
+          "round": 1,
+          "mean": 12.5
+        },
+        {
+          "phase": "N",
+          "round": 2,
+          "mean": 12.5
+        },
+        {
+          "phase": "N",
+          "round": 3,
+          "mean": 13.75
+        },
+        {
+          "phase": "N",
+          "round": 4,
+          "mean": 12.5
+        },
+        {
+          "phase": "N",
+          "round": 5,
+          "mean": 15.0
+        },
+        {
+          "phase": "N",
+          "round": 6,
+          "mean": 15.0
+        },
+        {
+          "phase": "N",
+          "round": 7,
+          "mean": 15.0
+        },
+        {
+          "phase": "N",
+          "round": 8,
+          "mean": 15.0
+        },
+        {
+          "phase": "N",
+          "round": 9,
+          "mean": 15.0
+        },
+        {
+          "phase": "N",
+          "round": 10,
+          "mean": 15.0
+        },
+        {
+          "phase": "P",
+          "round": 1,
+          "mean": 15.0
+        },
+        {
+          "phase": "P",
+          "round": 2,
+          "mean": 18.75
+        },
+        {
+          "phase": "P",
+          "round": 3,
+          "mean": 20.0
+        },
+        {
+          "phase": "P",
+          "round": 4,
+          "mean": 20.0
+        },
+        {
+          "phase": "P",
+          "round": 5,
+          "mean": 15.0
+        },
+        {
+          "phase": "P",
+          "round": 6,
+          "mean": 20.0
+        },
+        {
+          "phase": "P",
+          "round": 7,
+          "mean": 20.0
+        },
+        {
+          "phase": "P",
+          "round": 8,
+          "mean": 20.0
+        },
+        {
+          "phase": "P",
+          "round": 9,
+          "mean": 15.0
+        },
+        {
+          "phase": "P",
+          "round": 10,
+          "mean": 15.0
+        }
+      ],
+      "contribution_counts": {
+        "N": {
+          "10": 7,
+          "15": 33
+        },
+        "P": {
+          "0": 4,
+          "15": 1,
+          "20": 35
+        }
+      },
+      "contribution_changes_per_agent": {
+        "member-a": 5,
+        "member-b": 2,
+        "member-c": 4,
+        "member-d": 3
+      },
+      "judgment_uncertainty": {
+        "behavior_expectation": {
+          "unknown": 52,
+          "high": 57,
+          "medium": 11
+        },
+        "normative_expectation": {},
+        "personal_norm": {}
+      },
+      "accepted_judgment_decoding": {
+        "visible": 120
+      },
+      "recorded_responses_in_complete_trajectory": 240,
+      "invalid_outputs_in_complete_trajectory": 0,
+      "finish_reasons": {
+        "stop": 240
+      },
+      "fingerprints": [
+        "ollama:0.40.11:d63f830f28d515fefea546f213fca7a75e9dd5176ef51a6deabc952d1c99a911"
+      ],
+      "trajectory_sha256": "9b69944316d316510daa0a6a6f688b7b000048e75137ce88883f78108b22dc24"
+    }
+  },
+  "audits": {
+    "A": {
+      "passed": true,
+      "calls_checked": 120,
+      "valid_steps_checked": 120,
+      "person_rounds": 80,
+      "observation_and_state_checked": true,
+      "action_and_replay_checked": true,
+      "evaluator_input_checked": true,
+      "versioned_state_transitions_checked": null,
+      "recorded_source_matches_current": {
+        "environment/world.py": true,
+        "agents/runner.py": true,
+        "models/client.py": true,
+        "agents/agent_a.py": true,
+        "models/ollama.py": false
+      },
+      "exact_requests_responses_retries_replayed": true,
+      "provider_payloads_reconstructed": true,
+      "independent_payoffs": {
+        "passed": true,
+        "feedback_rows_checked": 80,
+        "one_time_P_payment_checked": true,
+        "negative_period_income_allowed": true
+      }
+    },
+    "B": {
+      "passed": true,
+      "calls_checked": 257,
+      "valid_steps_checked": 240,
+      "person_rounds": 80,
+      "observation_and_state_checked": true,
+      "action_and_replay_checked": true,
+      "evaluator_input_checked": true,
+      "versioned_state_transitions_checked": 200,
+      "recorded_source_matches_current": {
+        "environment/world.py": true,
+        "agents/runner.py": true,
+        "models/client.py": true,
+        "agents/agent_bc.py": true,
+        "agents/cognition.py": true,
+        "agents/state.py": true,
+        "agents/capabilities.py": true,
+        "models/ollama.py": true,
+        "experiments/recover_trial.py": true
+      },
+      "exact_requests_responses_retries_replayed": true,
+      "provider_payloads_reconstructed": true,
+      "independent_payoffs": {
+        "passed": true,
+        "feedback_rows_checked": 80,
+        "one_time_P_payment_checked": true,
+        "negative_period_income_allowed": true
+      }
+    },
+    "C": {
+      "passed": true,
+      "calls_checked": 240,
+      "valid_steps_checked": 240,
+      "person_rounds": 80,
+      "observation_and_state_checked": true,
+      "action_and_replay_checked": true,
+      "evaluator_input_checked": true,
+      "versioned_state_transitions_checked": 200,
+      "recorded_source_matches_current": {
+        "environment/world.py": true,
+        "agents/runner.py": true,
+        "models/client.py": true,
+        "agents/agent_bc.py": true,
+        "agents/cognition.py": true,
+        "agents/state.py": true,
+        "agents/capabilities.py": true,
+        "models/ollama.py": true
+      },
+      "exact_requests_responses_retries_replayed": true,
+      "provider_payloads_reconstructed": true,
+      "independent_payoffs": {
+        "passed": true,
+        "feedback_rows_checked": 80,
+        "one_time_P_payment_checked": true,
+        "negative_period_income_allowed": true
+      }
+    }
+  },
+  "limits": [
+    "One four-person group per arm; no stable ranking or significance estimate.",
+    "B changes citation decoding after an interrupted P5 contribution judgment; C uses visible-only decoding throughout.",
+    "N-to-P changes include condition, order and experience.",
+    "Legal outputs and replay checks do not establish the truth of free-text judgments.",
+    "The frozen human development summary is used; no final evaluation behavior is loaded."
+  ],
+  "run_accounting": {
+    "unique_actual_local_calls": 620,
+    "accepted_model_steps": 600,
+    "actual_invalid_outputs_including_terminal_failures": 20,
+    "responses_in_complete_artifacts": 617,
+    "original_terminal_failures_separately_preserved": 3,
+    "original_files_unchanged": true,
+    "additional_nonresearch_Finder_metadata": [
+      ".DS_Store"
+    ],
+    "reused_B_prefix_responses": 164,
+    "new_local_calls_after_repair": 333,
+    "actual_inference_seconds_excluding_replay_and_user_pause": 3543.472724865005,
+    "local_remote_api_billing": "No remote paid API calls; local compute costs are not measured."
+  },
+  "human_mean_points_per_available_target": 0.5601851851851852
+}

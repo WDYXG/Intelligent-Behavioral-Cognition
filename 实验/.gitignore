@@ -2,6 +2,19 @@
 __pycache__/
 .env
 .env.*
-public_goods/data/
-public_goods/runs/
+public_goods/data/*
+public_goods/runs/*
 .DS_Store
+
+# Reviewed aggregate statistics and synthetic experiment results.
+!/public_goods/data/reference/
+/public_goods/data/reference/*
+!/public_goods/data/reference/开发集统计.json
+!/public_goods/runs/live/
+/public_goods/runs/live/*
+!/public_goods/runs/live/history.zip
+!/public_goods/runs/live/ollama_qwen35_full_repair_20261025_001/
+!/public_goods/runs/live/ollama_qwen35_full_repair_20261025_001/*
+!/public_goods/runs/offline/
+/public_goods/runs/offline/*
+!/public_goods/runs/offline/checks.zip

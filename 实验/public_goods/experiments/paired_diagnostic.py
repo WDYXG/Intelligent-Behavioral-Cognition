@@ -6,6 +6,7 @@ from dataclasses import asdict
 import hashlib
 import json
 from pathlib import Path
+from public_goods import artifacts
 
 from public_goods.agents.agent_bc import BRunner, CRunner
 from public_goods.agents.cognition import ORIGINAL_REVISION, SCOPE_REVISION, VERIFIED_REVISION, STAGE_REVISION, PROMPT_REVISION
@@ -112,8 +113,8 @@ def probe_key(row):
 def resume_records(source, protocol, mode):
     """Retain every attempted probe, including failures; never selectively rerun."""
     source = Path(source).resolve()
-    previous_plan = json.loads((source / 'plan.json').read_text())
-    previous = json.loads((source / 'report.json').read_text())
+    previous_plan = artifacts.read_json(source / 'plan.json')
+    previous = artifacts.read_json(source / 'report.json')
     if previous['status'] != 'failed' or previous_plan['execution_mode'] != mode:
         raise ValueError('Resume requires an interrupted run in the same execution mode')
     for key in ('protocol', 'repetitions', 'cases', 'arms', 'prompt_revisions', 'settings'):
@@ -131,7 +132,7 @@ def resume_records(source, protocol, mode):
                 or row['prompt_revision'] not in protocol['prompt_revisions']):
             raise ValueError('Invalid or duplicate attempted probe in resume source')
         artifact = (source / row['artifact']).resolve()
-        saved = json.loads((artifact/'probe.json').read_text())
+        saved = artifacts.read_json(artifact/'probe.json')
         if any(saved.get(k) != row.get(k) for k in ('case', 'repetition', 'arm', 'prompt_revision', 'status', 'action', 'judgment', 'attempts')):
             raise ValueError('Resume report differs from saved probe')
         seen.add(key)
@@ -235,6 +236,7 @@ def run_diagnostic(output, model, repetitions=1, *, allow_live=False, compare_re
     return report
 
 
+@artifacts.compact_cli
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path)

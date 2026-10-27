@@ -1,22 +1,23 @@
 # 智能主体的行为认知：社会规范行为模拟研究
 
-## 2026-10-25 公共品实验代码备份
+## 2026-10-27 公共品实验
 
-本分支新增独立重写的本科毕设实验。入口位于 [实验/public_goods](实验/public_goods)，每日进展见 [研究日志](MD/毕设开发日志.md)。旧 `step/` 目录和下方审计说明保留 2026-10-16 状态。
+当前毕设代码位于 [实验/public_goods](实验/public_goods)，每日进展见 [研究日志](MD/毕设开发日志.md)。A 直接决策；B 先形成规范等判断再决策；C 移除显式规范判断。三组共用四人同步公共品环境。旧 `step/` 目录保留此前架构。
 
-- A 直接决策；B 先形成规范等判断再决策；C 移除显式规范判断。三组共用四人同步公共品环境。
-- 当前候选 v5 增加支付频率、完整贡献历史核对和旧 X 对照。完整预实验及小规模诊断尚未证明 B 更拟人。
-- 本次只备份代码、测试、自写笔记和数据来源元信息。原始数据、数据划分文件、密钥、模型请求/响应、费用账本、运行记录及论文全文保留在本地。日志中的部分本地报告链接在公开仓库不可用。
+最新 Qwen 修复预实验位于 [结果目录](实验/public_goods/runs/live/ollama_qwen35_full_repair_20261025_001)：`report.json` 是执行摘要，`development_comparison.json` 是评分，`contribution_curves.png` 是贡献曲线，`records.zip` 保存配置、请求响应、World 和状态记录。历史真实运行收在 `runs/live/history.zip`，离线核验摘要收在 `runs/offline/checks.zip`。
 
-安装依赖并运行无需真人数据或 API 的合成测试（macOS/Linux）：
+压缩后，评分、审查和恢复代码仍可按原路径读取，例如 `A/trajectory.jsonl`。从 `run.py` 或实验模块命令行运行时，输出目录在执行结束后自动精简；执行中的记录仍逐条落盘。
+
+本次每种实现只有一个四人小组，且 B 在恢复时改变引用约束。A 的整体 W1 最小，B 的 P 条件均值较接近真人但贡献只取 0/20。结果尚不能证明 B 更拟人，详见评分中的限制。
 
 ```sh
 python3 -m venv 实验/.venv
 实验/.venv/bin/python -m pip install -r 实验/public_goods/requirements.txt
-PYTHONPATH=实验 实验/.venv/bin/python -m unittest public_goods.tests.test_world public_goods.tests.test_agent_state public_goods.tests.test_agent_a public_goods.tests.test_agent_bc public_goods.tests.test_capabilities public_goods.tests.test_memory_diagnostic
+PYTHONPATH=实验 实验/.venv/bin/python -m unittest public_goods.tests.test_world public_goods.tests.test_agent_bc public_goods.tests.test_artifacts public_goods.tests.test_ollama_recovery
+PYTHONPATH=实验 实验/.venv/bin/python -m public_goods.experiments.review_trial --A 实验/public_goods/runs/live/ollama_qwen35_full_repair_20261025_001/A --B 实验/public_goods/runs/live/ollama_qwen35_full_repair_20261025_001/B --C 实验/public_goods/runs/live/ollama_qwen35_full_repair_20261025_001/C --output /tmp/qwen_comparison.json
 ```
 
-真人参照和完整测试另需从 [Dryad 原始来源](https://doi.org/10.5061/dryad.87301) 合法恢复数据，并按 [来源记录](数据核验/Herrmann2008/来源记录.json) 中的相对位置放置文件。历史诊断还需要本地原始运行记录。模型密钥由使用者在本地配置；运行真实实验前先查看调用量和预算计划。
+公开结果只包含合成智能体行为和真人开发集汇总统计。原始真人记录、个体 Persona、划分身份清单、密钥、费用账本、虚拟环境和论文全文不上传。需要原始真人数据的测试，须从 [Dryad 来源](https://doi.org/10.5061/dryad.87301) 自行恢复数据。
 
 ## 2026-10-16 旧实现与审计
 
@@ -32,7 +33,7 @@ PYTHONPATH=实验 实验/.venv/bin/python -m unittest public_goods.tests.test_wo
 - [复现指南](docs/audit/REPRODUCTION_GUIDE.md)：公开代码检查与私有研究环境恢复。
 - [公开备份边界](docs/audit/PUBLICATION_SCOPE.md)：排除项及安全检查。
 
-## 公开仓库的边界
+## 2026-10-16 旧备份的边界
 
 公开备份不包含原始数据、受访者记录、个体 Persona、选样包、模型请求/响应、历史运行日志、来源问卷/完整字典及未完成许可审查的规则表。相关本地文件保持原位，未删除或改写。代码中的历史路径引用不代表这些数据可公开下载。
 

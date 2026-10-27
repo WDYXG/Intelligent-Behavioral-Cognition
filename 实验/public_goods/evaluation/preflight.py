@@ -7,6 +7,7 @@ import hashlib
 from io import StringIO
 import json
 from pathlib import Path
+from public_goods import artifacts
 from types import SimpleNamespace
 import unittest
 
@@ -264,9 +265,9 @@ def audit_run(task):
 def audit_saved_run(output):
     """Read-only audit of a completed run; makes no model calls."""
     output = Path(output)
-    read_rows = lambda name: [json.loads(line) for line in (output / name).read_text().splitlines()]
-    config = json.loads((output / "config.json").read_text())
-    summary = json.loads((output / "summary.json").read_text())
+    read_rows = lambda name: artifacts.read_rows(output / name)
+    config = artifacts.read_json(output / "config.json")
+    summary = artifacts.read_json(output / "summary.json")
     check(summary["status"] == "completed", "Only completed runs can pass the full audit")
     world = World.replay(read_rows("events.jsonl"))
     check(world.trajectory() == read_rows("trajectory.jsonl"), "Saved trajectory differs from replay")

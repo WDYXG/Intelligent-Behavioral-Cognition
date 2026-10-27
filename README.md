@@ -2,6 +2,8 @@
 
 ## 2026-10-27 公共品实验
 
+版本定位：**结果精简与诊断基线**。本版整理文件并保留可回放证据，用作后续极端选择诊断的对照起点。没有新增模型调用或行为机制改进，不能据此声称拟人性提升。
+
 当前毕设代码位于 [实验/public_goods](实验/public_goods)，每日进展见 [研究日志](MD/毕设开发日志.md)。A 直接决策；B 先形成规范等判断再决策；C 移除显式规范判断。三组共用四人同步公共品环境。旧 `step/` 目录保留此前架构。
 
 最新 Qwen 修复预实验位于 [结果目录](实验/public_goods/runs/live/ollama_qwen35_full_repair_20261025_001)：`report.json` 是执行摘要，`development_comparison.json` 是评分，`contribution_curves.png` 是贡献曲线，`records.zip` 保存配置、请求响应、World 和状态记录。历史真实运行收在 `runs/live/history.zip`，离线核验摘要收在 `runs/offline/checks.zip`。
